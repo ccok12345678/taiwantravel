@@ -1,5 +1,5 @@
 <template lang="pug">
-header.shadow.rounded.d-flex.justify-content-between.align-items-center
+header.bg-white.shadow.rounded.d-flex.justify-content-between.align-items-center
 
   .slogan.flex-fill
     h1 探索。#[br]福爾摩沙
