@@ -6,10 +6,18 @@ nav.bg-white.d-flex.justify-content-center.py-2.ps-3.shadow.d-lg-none
     img(src="@/assets/icons/slider_icon.svg"
       alt="menu toggle button")
 
-  a.logo.me-auto(href="#" title="Taiwan Travel")
-    img(src="@/assets/images/logo.svg"
-      alt="page logo" height="40")
+  Logo.logo.me-auto
 </template>
+
+<script>
+import Logo from '@/components/PageLogo.vue'
+
+export default {
+  components: {
+    Logo
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 $btn-size: 32px;
