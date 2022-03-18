@@ -5,3 +5,9 @@
     font-size: 1rem;
   }
 }
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-weight: bold;
+  }
+}
