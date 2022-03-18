@@ -403,8 +403,8 @@ $position-values: (
 //
 // Settings for the `<body>` element.
 
-$body-bg:                   $white !default;
-$body-color:                $gray-900 !default;
+$body-bg:                   $light; // $white !default;
+$body-color:                #222222; // $gray-900 !default;
 $body-text-align:           null !default;
 
 // Utilities maps

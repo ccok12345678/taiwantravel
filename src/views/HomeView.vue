@@ -1,10 +1,16 @@
 <template lang="pug">
-h1 lg大標題
-h2 sm大標題
-h3 page title
-hr
-h4 item title
-p 測試文字，響應式大小
-button.btn.btn-primary button
-.text-footnote 備註文字
+.container-fluid.p-4.min-vh-100
+  Banner
 </template>
+
+<script>
+import Banner from '@/components/FrontPageBanner.vue'
+
+export default {
+  name: 'HomeView',
+  components: {
+    Banner
+  }
+}
+
+</script>
