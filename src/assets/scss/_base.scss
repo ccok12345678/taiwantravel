@@ -1,0 +1,7 @@
+:root {
+  font-size: 1.125rem;
+
+  @include media-breakpoint-down(sm) {
+    font-size: 1rem;
+  }
+}
