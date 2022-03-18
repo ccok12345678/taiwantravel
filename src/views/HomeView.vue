@@ -1,27 +1,32 @@
-<template>
-  <div class="home">
-    <button type="button" class="btn btn-primary">Primary</button>
-    <button type="button" class="btn btn-secondary">Secondary</button>
-    <button type="button" class="btn btn-success">Success</button>
-    <button type="button" class="btn btn-danger">Danger</button>
-    <button type="button" class="btn btn-warning">Warning</button>
-    <button type="button" class="btn btn-info">Info</button>
-    <button type="button" class="btn btn-light">Light</button>
-    <button type="button" class="btn btn-dark">Dark</button>
-    <button type="button" class="btn btn-link">Link</button>
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang="pug">
+.min-vh-100.d-flex.flex-column
+
+  NavBar
+
+  .container-fluid.p-4
+    Banner
+    Banner
+    Banner
+    Banner
+    Banner
+    Banner
+    Banner
+
+  Footer.mt-auto
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Banner from '@/components/FrontPageBanner.vue'
+import Footer from '@/components/FrontPageFooter.vue'
+import NavBar from '@/components/NavBar.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+    Banner,
+    Footer,
+    NavBar
   }
 }
+
 </script>

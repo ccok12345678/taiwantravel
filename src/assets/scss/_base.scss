@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+
+:root {
+  font-size: 1.125rem;
+
+  @include media-breakpoint-down(sm) {
+    font-size: 1rem;
+  }
+}
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+}
+
+.btn, .form-control {
+  &:focus {
+    box-shadow: none;
+  }
+}

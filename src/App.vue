@@ -1,31 +1,21 @@
 <template lang="pug">
-nav
-  router-link(to="/") Home |
-  router-link(to="/about") About
-router-view
+.row.g-0
+  .col.col-lg-9.order-1
+    router-view
+  .col-3.order-0.d-none.d-lg-block
+    SideMenu
 </template>
+
+<script>
+import SideMenu from '@/components/SideMenu.vue'
+
+export default {
+  components: {
+    SideMenu
+  }
+}
+</script>
 
 <style lang="scss">
 @import "assets/scss/all.scss";
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>
