@@ -14,3 +14,9 @@
     margin-bottom: 0;
   }
 }
+
+.btn, .form-control {
+  &:focus {
+    box-shadow: none;
+  }
+}

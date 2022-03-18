@@ -5,6 +5,12 @@
 
   .container-fluid.p-4
     Banner
+    Banner
+    Banner
+    Banner
+    Banner
+    Banner
+    Banner
 
   Footer.mt-auto
 </template>
