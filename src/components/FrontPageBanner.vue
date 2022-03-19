@@ -8,6 +8,7 @@ header.bg-white.shadow.rounded.d-flex.justify-content-between.align-items-center
     img.img-fluid(src="@/assets/images/illustration.png"
       alt="heading illustration")
 
+.py-3.mt-2
 </template>
 
 <style lang="scss" scoped>
