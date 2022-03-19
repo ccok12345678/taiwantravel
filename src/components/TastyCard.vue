@@ -13,7 +13,7 @@ router-link.rounded.overflow-hidden.bg-white.shadow.d-block.position-relative(
     h4.text-dark.text-truncate {{ tasty.title }}
 
     .vstack
-      .open-time {{ tasty.open }}
+      .open-time.mb-2 {{ tasty.open }}
       .location.me-3 {{ tasty.location }}
 </template>
 

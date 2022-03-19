@@ -13,7 +13,7 @@ router-link.rounded.overflow-hidden.bg-white.shadow.d-block.position-relative(
     h4.text-dark.text-truncate {{ activity.title }}
 
     .vstack
-      .open-time {{ activity.open }}
+      .open-time.mb-2 {{ activity.open }}
       .location.me-3 {{ activity.location }}
 </template>
 
