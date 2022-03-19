@@ -4,7 +4,8 @@ header.d-flex.justify-content-between.align-items-center
     img(src="@/assets/icons/location_icon_purple.svg" alt="location icon")
     h3 {{ header.title }}
 
-  router-link.text-primary.text-no-responsive(:to="`/${header.url}`")
+  router-link.text-primary.text-no-responsive.d-none.d-sm-block(
+    :to="`/${header.url}`")
     | 更多{{ header.title }}
 
 </template>
