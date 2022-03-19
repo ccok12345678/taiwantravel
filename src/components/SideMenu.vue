@@ -1,12 +1,12 @@
 <template lang="pug">
-aside.bg-white.min-vh-100.shadow.sticky-top.p-4
+aside.bg-white.vh-100.shadow.sticky-top.p-4.pt-1.overflow-auto
 
   header.side-header.mt-3
-    Logo.mb-4
+    Logo.mb-3
 
     SearchBar
 
-    hr.my-4
+    hr.my-3
 
   .side-body
     CategoryMenu

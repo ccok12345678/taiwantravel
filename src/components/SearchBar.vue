@@ -26,7 +26,7 @@
 
 //- search input
 label(for="keyword")
-  span.invisible 輸入關鍵字
+  small.invisible 輸入關鍵字
   .input-group.border.rounded.bg-light
     input#keyword.form-control.border-0(type="search"
       placeholder="搜尋關鍵字")
@@ -46,6 +46,7 @@ export default {
 
 <style lang="scss" scoped>
 .dropdown-btn {
+  font-size: 16px;
   padding: 8px 11.5px 8px 12px;;
 }
 .dropdown-menu {
@@ -53,7 +54,8 @@ export default {
 }
 
 input {
-  padding: 7px 11.5px 7px 12px;
+  font-size: 16px;
+  padding: 8px 11.5px 7px 12px;
 
   &:focus {
     outline: none;
