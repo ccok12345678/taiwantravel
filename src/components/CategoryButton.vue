@@ -1,5 +1,5 @@
 <template lang="pug">
-button.btn.rounded-circle.d-flex.flex-column.align-items-center(
+button.btn.d-flex.flex-column.align-items-center(
   type="button" :title="button.title")
   img(:src="button.src" width="65" :alt="`分類為${button.title}`")
   span {{ button.title }}
@@ -18,6 +18,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.btn {
+  &:focus , &:hover {
+    border: 1px solid #3FB195;
+  }
+}
+
 span {
   font-size: 16px;
 }
