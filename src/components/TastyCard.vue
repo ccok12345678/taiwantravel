@@ -1,31 +1,31 @@
 <template lang="pug">
 router-link.rounded.overflow-hidden.bg-white.shadow.d-block.position-relative(
-  :to="attraction.path"
-  :title="`察看${attraction.title}`")
+  :to="tasty.path"
+  :title="`察看${tasty.title}`")
 
   img.position-absolute.link(src="@/assets/icons/link_icon.svg" alt="link icon")
 
   img.object-cover.w-100(
-    :src="attraction.image"
-    :alt="`${attraction.title}照片`")
+    :src="tasty.image"
+    :alt="`${tasty.title}照片`")
 
   .px-3.py-2
-    h4.text-dark {{ attraction.title }}
+    h4.text-dark.text-truncate {{ tasty.title }}
 
-    .hstack
-      .location.me-3 {{ attraction.location }}
-      .open-time {{ attraction.open }}
+    .vstack
+      .open-time.mb-2 {{ tasty.open }}
+      .location.me-3 {{ tasty.location }}
 </template>
 
 <script>
 export default {
   props: {
-    attraction: {
+    tasty: {
       type: Object,
       default: () => ({
-        title: '觀光活動',
+        title: '美食品嚐',
         image: 'https://i.ibb.co/125cfL1/illustration-sm.png',
-        location: '景點位置',
+        location: '店家位置',
         open: '開放時間',
         path: '/'
       })
