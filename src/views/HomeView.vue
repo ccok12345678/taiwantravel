@@ -5,12 +5,8 @@
 
   .container-fluid.p-4
     Banner
-    Banner
-    Banner
-    Banner
-    Banner
-    Banner
-    Banner
+
+    router-view
 
   Footer.mt-auto
 </template>

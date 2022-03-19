@@ -1,5 +1,4 @@
 <template lang="pug">
-//- dropdown menu
 .dropdown
   a#dropdownMenuLink.dropdown-btn.bg-light.border.rounded.d-flex.text-decoration-none(
     data-bs-toggle="dropdown"
@@ -23,15 +22,6 @@
         MenuButton 台北
       .col-4
         MenuButton 台北
-
-//- search input
-label(for="keyword")
-  span.invisible 輸入關鍵字
-  .input-group.border.rounded.bg-light
-    input#keyword.form-control.border-0(type="search"
-      placeholder="搜尋關鍵字")
-    button.btn.d-flex(type="button" title="搜尋")
-      img.my-auto(src="@/assets/icons/search.svg" alt="search icon")
 </template>
 
 <script>
@@ -46,17 +36,10 @@ export default {
 
 <style lang="scss" scoped>
 .dropdown-btn {
+  font-size: 16px;
   padding: 8px 11.5px 8px 12px;;
 }
 .dropdown-menu {
   padding: 12px;
-}
-
-input {
-  padding: 7px 11.5px 7px 12px;
-
-  &:focus {
-    outline: none;
-  }
 }
 </style>
