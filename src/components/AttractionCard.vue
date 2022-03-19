@@ -1,7 +1,9 @@
 <template lang="pug">
-router-link.rounded.overflow-hidden.bg-white.shadow.d-block(
+router-link.rounded.overflow-hidden.bg-white.shadow.d-block.position-relative(
   :to="attraction.path"
   :title="`察看${attraction.title}`")
+
+  img.position-absolute.link(src="@/assets/icons/link_icon.svg" alt="link icon")
 
   img.object-cover.w-100(
     :src="attraction.image"
@@ -21,7 +23,7 @@ export default {
     attraction: {
       type: Object,
       default: () => ({
-        title: '熱門景點',
+        title: '觀光活動',
         image: 'https://i.ibb.co/125cfL1/illustration-sm.png',
         location: '景點位置',
         open: '開放時間',
@@ -44,6 +46,12 @@ a {
     width: 90%;
   }
 }
+
+.link {
+  top: 12px;
+  right: 12px;
+}
+
 h4 {
   margin-bottom: 10px;
 }
