@@ -6,11 +6,20 @@
     aria-expanded="false"
     title="選擇地區")
 
-    .text-muted.lh-1.my-auto
+    .text-muted.lh-1.my-auto(v-if="!cityName")
       | 目的地
+    .text-dark.lh-1.my-auto(v-else)
+      | {{ cityName }}
+      a.text-muted.p-2(
+        href="#"
+        title="取消"
+        role="button"
+        @click.prevent="cancelCity")
+        img(src="@/assets/icons/x_icon.svg" width="12" alt="cancel button")
 
     .ms-auto.d-flex
-      img.my-auto(src="@/assets/icons/arrow_down_circle.svg"
+      img.my-auto(
+        src="@/assets/icons/arrow_down_circle.svg"
         alt="dropdown menu button")
 
   .dropdown-menu.border-0.shadow.w-100(
@@ -18,26 +27,36 @@
     .row.g-2
 
       .col-4(v-for="city in cities" :key="city.english")
-        MenuButton(:city="city"
-          @emit-click="acceptClick")
+        DropdownButton(:city="city"
+          @emit-click="handleClick")
 </template>
 
 <script>
-import MenuButton from '@/components/MenuButton.vue'
+import { ref } from 'vue'
+import DropdownButton from '@/components/DropdownButton.vue'
 import cities from '@/data/cities'
 
 export default {
   components: {
-    MenuButton
+    DropdownButton
   },
   setup (props) {
-    const acceptClick = (city) => {
-      console.log(city)
+    const cityName = ref(null)
+
+    const handleClick = (city) => {
+      // console.log(city)
+      cityName.value = city.name
+    }
+
+    const cancelCity = () => {
+      cityName.value = null
     }
 
     return {
       cities,
-      acceptClick
+      cityName,
+      handleClick,
+      cancelCity
     }
   }
 }
