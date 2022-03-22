@@ -1,20 +1,26 @@
 <template lang="pug">
 router-link.rounded.overflow-hidden.bg-white.shadow.d-block.position-relative(
-  :to="hotel.path"
-  :title="`察看${hotel.title}`")
+  :to="`hotels/${hotel.HotelID}`"
+  :title="hotel.HotelName")
 
   img.position-absolute.link(src="@/assets/icons/link_icon.svg" alt="link icon")
 
-  img.object-cover.w-100(
-    :src="hotel.image"
-    :alt="`${hotel.title}照片`")
+  img.object-cover.w-100(v-if="'PictureUrl1' in hotel.Picture"
+    :src="hotel.Picture.PictureUrl1"
+    :alt="hotel.HotelName")
+  img.object-cover.w-100(v-else
+    src="@/assets/images/illustration.png"
+    alt="該資料沒有圖片"
+    title="該資料沒有圖片")
 
   .px-3.py-2
-    h4.text-dark.text-truncate {{ hotel.title }}
+    h4.text-dark.text-truncate {{ hotel.HotelName }}
 
     .vstack
-      .phone.mb-2 {{ hotel.phone }}
-      .location.me-3 {{ hotel.location }}
+      .phone.mb-2.text-truncate(:title="hotel.Phone")
+        | + {{ hotel.Phone }}
+      .location.me-3.text-truncate(:title="hotel.Address")
+        | {{ hotel.Address }}
 </template>
 
 <script>
@@ -22,13 +28,7 @@ export default {
   props: {
     hotel: {
       type: Object,
-      default: () => ({
-        title: '住宿推薦',
-        image: 'https://i.ibb.co/125cfL1/illustration-sm.png',
-        location: '旅館位置',
-        phone: '886-3-33333333',
-        path: '/'
-      })
+      default: () => {}
     }
   }
 }

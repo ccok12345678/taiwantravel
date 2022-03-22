@@ -1,20 +1,26 @@
 <template lang="pug">
 router-link.rounded.overflow-hidden.bg-white.shadow.d-block.position-relative(
-  :to="attraction.path"
-  :title="`察看${attraction.title}`")
+  :to="`attractions/${attraction.ScenicSpotID}`"
+  :title="`察看${attraction.ScenicSpotName}`")
 
   img.position-absolute.link(src="@/assets/icons/link_icon.svg" alt="link icon")
 
-  img.object-cover.w-100(
-    :src="attraction.image"
-    :alt="`${attraction.title}照片`")
+  img.object-cover.w-100(v-if="'PictureUrl1' in attraction.Picture"
+    :src="attraction.Picture.PictureUrl1"
+    :alt="attraction.Picture.PictureDescription1")
+  img.object-cover.w-100(v-else
+    src="@/assets/images/illustration.png"
+    alt="該資料沒有圖片"
+    title="該資料沒有圖片")
 
   .px-3.py-2
-    h4.text-dark {{ attraction.title }}
+    h4.text-dark {{ attraction.ScenicSpotName }}
 
     .hstack
-      .location.me-3 {{ attraction.location }}
-      .open-time {{ attraction.open }}
+      .location.me-3.text-truncate(:title="attraction.City")
+        | {{ attraction.City }}
+      .open-time.text-truncate(:title="attraction.OpenTime")
+        | {{ attraction.OpenTime }}
 </template>
 
 <script>
@@ -23,11 +29,13 @@ export default {
     attraction: {
       type: Object,
       default: () => ({
-        title: '觀光活動',
-        image: 'https://i.ibb.co/125cfL1/illustration-sm.png',
-        location: '景點位置',
-        open: '開放時間',
-        path: '/'
+        ScenicSpotName: '觀光活動',
+        Picture: {
+          PictureUrl1: 'https://i.ibb.co/125cfL1/illustration-sm.png'
+        },
+        City: '景點位置',
+        OpenTime: '開放時間',
+        ScenicSpotID: '/'
       })
     }
   }

@@ -1,20 +1,26 @@
 <template lang="pug">
 router-link.rounded.overflow-hidden.bg-white.shadow.d-block.position-relative(
-  :to="tasty.path"
-  :title="`察看${tasty.title}`")
+  :to="`tastys/${tasty.RestaurantID}`"
+  :title="tasty.RestaurantName")
 
   img.position-absolute.link(src="@/assets/icons/link_icon.svg" alt="link icon")
 
-  img.object-cover.w-100(
-    :src="tasty.image"
-    :alt="`${tasty.title}照片`")
+  img.object-cover.w-100(v-if="'PictureUrl1' in tasty.Picture"
+    :src="tasty.Picture.PictureUrl1"
+    :alt="tasty.RestaurantName")
+  img.object-cover.w-100(v-else
+    src="@/assets/images/illustration.png"
+    alt="該資料沒有圖片"
+    title="該資料沒有圖片")
 
   .px-3.py-2
-    h4.text-dark.text-truncate {{ tasty.title }}
+    h4.text-dark.text-truncate {{ tasty.RestaurantName }}
 
     .vstack
-      .open-time.mb-2 {{ tasty.open }}
-      .location.me-3 {{ tasty.location }}
+      .open-time.mb-2.text-truncate(:title="tasty.OpenTime")
+        | {{ tasty.OpenTime }}
+      .location.me-3.text-truncate(:title="tasty.Address")
+        | {{ tasty.Address }}
 </template>
 
 <script>
@@ -22,13 +28,7 @@ export default {
   props: {
     tasty: {
       type: Object,
-      default: () => ({
-        title: '美食品嚐',
-        image: 'https://i.ibb.co/125cfL1/illustration-sm.png',
-        location: '店家位置',
-        open: '開放時間',
-        path: '/'
-      })
+      default: () => {}
     }
   }
 }
