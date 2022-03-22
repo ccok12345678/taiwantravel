@@ -17,6 +17,7 @@ specifiers:
   sass-loader: ^12.0.0
   vue: ^3.2.13
   vue-cli-plugin-pug: ^2.0.0
+  vue-element-loading: ^3.0.1
   vue-router: ^4.0.3
 
 dependencies:
@@ -24,6 +25,7 @@ dependencies:
   jssha: 3.2.0
   lodash: 4.17.21
   vue: 3.2.31
+  vue-element-loading: 3.0.1
   vue-router: 4.0.14_vue@3.2.31
 
 devDependencies:
@@ -5301,6 +5303,10 @@ packages:
     transitivePeerDependencies:
       - webpack
     dev: true
+
+  /vue-element-loading/3.0.1:
+    resolution: {integrity: sha512-WzQJKTmOWBEfKzVoRr9Mk2aLYVxJNEatWYTNuOTG8SwWGvNI9ZfnJBxVwqTpBPclGLG7bZqTLfco+BP3ebu5Sw==}
+    dev: false
 
   /vue-eslint-parser/8.3.0_eslint@7.32.0:
     resolution: {integrity: sha512-dzHGG3+sYwSf6zFBa0Gi9ZDshD7+ad14DGOdTLjruRVgZXe2J+DcZ9iUhyR48z5g1PqRa20yt3Njna/veLJL/g==}
