@@ -1,7 +1,8 @@
 <template lang="pug">
 section
   Title(
-    :header="{title:'熱門景點', url:'attractions'}")
+    :header="{title:'熱門景點', path:'attractions' }"
+    :userLocation="userLocation")
 
   .d-flex.flex-column.flex-sm-row.flex-wrap.justify-content-sm-around.align-items-center
 
@@ -9,7 +10,7 @@ section
       Card(:attraction="attraction")
 
     router-link.text-primary.text-no-responsive.d-block.d-sm-none(
-      to="/attraction")
+      to="/attractions")
       | 更多熱門景點
 </template>
 
@@ -28,7 +29,7 @@ export default {
       type: Array,
       default: () => []
     },
-    location: {
+    userLocation: {
       type: Object,
       default: () => {}
     }

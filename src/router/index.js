@@ -9,8 +9,13 @@ const routes = [
     children: [
       {
         path: '/',
-        name: 'FrontPage',
+        name: 'frontpage',
         component: () => import('../views/FrontPageView.vue')
+      },
+      {
+        path: 'attractions',
+        name: 'attractions',
+        component: () => import('../views/AttractionsPageView.vue')
       }
     ]
   }
