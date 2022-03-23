@@ -24,3 +24,10 @@
 .phone {
   @include addIcon('@/assets/icons/phone_icon.svg')
 }
+
+.pagination {
+  margin-top: 40px;
+}
+.page-item:not([class~="disabled"]) {
+  cursor: pointer;
+}

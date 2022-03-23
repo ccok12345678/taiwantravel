@@ -5,8 +5,13 @@ SortBar.mb-3.mb-md-4
 
 .row.gy-2.gy-md-4
   .col-12.col-sm-6.col-md-4(
-    v-for="attraction in attractionList" :key="attraction.ScenicSpotID"  )
+    v-for="attraction in pagination.pageData" :key="attraction.ScenicSpotID"  )
     Card.w-100(:attraction="attraction")
+
+nav.d-flex.justify-content-center
+  Paginate(
+    :page-count="pagination.pageTotal"
+    :click-handler="changePage")
 
 VueLoading(v-if="isLoading")
 </template>
@@ -14,20 +19,26 @@ VueLoading(v-if="isLoading")
 <script>
 import { inject, ref, onMounted } from 'vue'
 import getData from '@/methods/getData'
+import handleChangePage from '@/methods/handleChangePage'
 import SortBar from '@/components/SortBar.vue'
 import Card from '@/components/cards/AttractionCard.vue'
 import VueLoading from '@/components/VueLoading.vue'
+import Paginate from 'vuejs-paginate-next'
 
 export default {
   components: {
     SortBar,
     Card,
+    Paginate,
     VueLoading
   },
   setup () {
     const attractionList = ref([])
     const isLoading = ref(true)
+    const pagination = ref({})
+
     const { lat, lon } = inject('userLocation')
+
     console.log('attractions:', lat, lon)
 
     const url = lat
@@ -37,6 +48,7 @@ export default {
     onMounted(async () => {
       try {
         attractionList.value = await getData(url)
+        pagination.value = handleChangePage(attractionList.value)
         isLoading.value = false
       } catch (error) {
         console.log('fetch error', error)
@@ -45,9 +57,15 @@ export default {
       console.log(attractionList.value)
     })
 
+    function changePage (nowPage) {
+      console.log(nowPage)
+      pagination.value = handleChangePage(attractionList.value, nowPage)
+    }
+
     return {
-      attractionList,
-      isLoading
+      isLoading,
+      pagination,
+      changePage
     }
   }
 }
