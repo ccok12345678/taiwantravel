@@ -23,10 +23,10 @@ VueElementLoading(is-full-screen
 import { reactive, ref } from 'vue'
 import { round } from 'lodash'
 import getData from '@/methods/getData'
-import Attractions from '@/components/FrontPageAttractions.vue'
-import Activities from '@/components/FrontPageActivities.vue'
-import Tasty from '@/components/FrontPageTasty.vue'
-import Hotels from '@/components/FrontPageHotels.vue'
+import Attractions from '@/components/frontpage/FrontPageAttractions.vue'
+import Activities from '@/components/frontpage/FrontPageActivities.vue'
+import Tasty from '@/components/frontpage/FrontPageTasty.vue'
+import Hotels from '@/components/frontpage/FrontPageHotels.vue'
 import VueElementLoading from 'vue-element-loading'
 
 export default {

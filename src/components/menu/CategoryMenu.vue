@@ -9,7 +9,7 @@ h6.mb-4 精選主題
 
 <script>
 import { ref } from 'vue'
-import CategoryButton from '@/components/CategoryButton.vue'
+import CategoryButton from '@/components/menu/CategoryButton.vue'
 
 export default {
   components: {

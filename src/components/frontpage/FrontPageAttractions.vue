@@ -15,8 +15,8 @@ section
 
 <script>
 import { toRefs } from 'vue'
-import Title from '@/components/FrontPageTitle.vue'
-import Card from '@/components/AttractionCard.vue'
+import Title from '@/components/frontpage/FrontPageTitle.vue'
+import Card from '@/components/cards/AttractionCard.vue'
 
 export default {
   components: {

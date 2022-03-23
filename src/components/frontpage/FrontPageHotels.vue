@@ -1,21 +1,21 @@
 <template lang="pug">
 section
-  Title(:header="{title:'美食品嚐', url:'activities'}")
+  Title(:header="{title:'住宿推薦', url:'hotels'}")
 
   .d-flex.flex-column.flex-sm-row.flex-wrap.justify-content-sm-around.align-items-center
 
-    template(v-for="tasty in list" :key="tasty.RestaurantID")
-      Card(:tasty="tasty")
+    template(v-for="hotel in list" :key="hotel.HotelID")
+      Card(:hotel="hotel")
 
     router-link.text-primary.text-no-responsive.d-block.d-sm-none(
-      to="/attraction")
-      | 更多美食品嚐
+      to="/hotels")
+      | 更多住宿推薦
 </template>
 
 <script>
 import { toRefs } from 'vue'
-import Title from '@/components/FrontPageTitle.vue'
-import Card from '@/components/TastyCard.vue'
+import Title from '@/components/frontpage/FrontPageTitle.vue'
+import Card from '@/components/cards/HotelCard.vue'
 
 export default {
   components: {
@@ -23,17 +23,13 @@ export default {
     Card
   },
   props: {
-    tastys: {
+    hotels: {
       type: Array,
       default: () => []
-    },
-    location: {
-      type: Object,
-      default: () => {}
     }
   },
   setup (props) {
-    const { list } = toRefs(props.tastys)
+    const { list } = toRefs(props.hotels)
 
     return {
       list

@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import Banner from '@/components/FrontPageBanner.vue'
-import Footer from '@/components/FrontPageFooter.vue'
+import Banner from '@/components/frontpage/FrontPageBanner.vue'
+import Footer from '@/components/frontpage/FrontPageFooter.vue'
 import NavBar from '@/components/NavBar.vue'
 
 export default {

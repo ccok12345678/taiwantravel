@@ -33,7 +33,7 @@
 
 <script>
 import { ref } from 'vue'
-import DropdownButton from '@/components/DropdownButton.vue'
+import DropdownButton from '@/components/menu/DropdownButton.vue'
 import cities from '@/data/cities'
 
 export default {

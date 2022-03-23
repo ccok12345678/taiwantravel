@@ -17,9 +17,9 @@ aside.bg-white.vh-100.shadow.sticky-top.p-4.pt-1.overflow-auto
 
 <script>
 import Logo from '@/components/PageLogo.vue'
-import CategoryMenu from '@/components/CategoryMenu.vue'
-import SearchDropdown from '@/components/SearchDropdown.vue'
-import SearchInput from '@/components/SearInput.vue'
+import CategoryMenu from '@/components/menu/CategoryMenu.vue'
+import SearchDropdown from '@/components/menu/SearchDropdown.vue'
+import SearchInput from '@/components/menu/SearInput.vue'
 
 export default {
   components: {

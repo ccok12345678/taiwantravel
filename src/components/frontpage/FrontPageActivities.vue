@@ -1,21 +1,21 @@
 <template lang="pug">
 section
-  Title(:header="{title:'住宿推薦', url:'hotels'}")
+  Title(:header="{title:'觀光活動', url:'activities'}")
 
   .d-flex.flex-column.flex-sm-row.flex-wrap.justify-content-sm-around.align-items-center
 
-    template(v-for="hotel in list" :key="hotel.HotelID")
-      Card(:hotel="hotel")
+    template(v-for="activity in list" :key="activity.ActivityID")
+      Card(:activity="activity")
 
     router-link.text-primary.text-no-responsive.d-block.d-sm-none(
-      to="/hotels")
-      | 更多住宿推薦
+      to="/attraction")
+      | 更多觀光活動
 </template>
 
 <script>
 import { toRefs } from 'vue'
-import Title from '@/components/FrontPageTitle.vue'
-import Card from '@/components/HotelCard.vue'
+import Title from '@/components/frontpage/FrontPageTitle.vue'
+import Card from '@/components/cards/ActivityCard.vue'
 
 export default {
   components: {
@@ -23,13 +23,13 @@ export default {
     Card
   },
   props: {
-    hotels: {
+    activities: {
       type: Array,
       default: () => []
     }
   },
   setup (props) {
-    const { list } = toRefs(props.hotels)
+    const { list } = toRefs(props.activities)
 
     return {
       list
