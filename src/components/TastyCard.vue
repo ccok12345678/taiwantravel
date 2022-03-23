@@ -7,11 +7,13 @@ router-link.rounded.overflow-hidden.bg-white.shadow.d-block.position-relative(
 
   img.object-cover.w-100(v-if="'PictureUrl1' in tasty.Picture"
     :src="tasty.Picture.PictureUrl1"
-    :alt="tasty.RestaurantName")
+    :alt="tasty.RestaurantName"
+    height="163")
   img.object-cover.w-100(v-else
     src="@/assets/images/illustration.png"
     alt="該資料沒有圖片"
-    title="該資料沒有圖片")
+    title="該資料沒有圖片"
+    height="163")
 
   .px-3.py-2
     h4.text-dark.text-truncate {{ tasty.RestaurantName }}
