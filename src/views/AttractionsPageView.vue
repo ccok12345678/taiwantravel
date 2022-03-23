@@ -3,6 +3,11 @@ h2.mb-3.mb-md-4 熱門景點
 
 SortBar.mb-3.mb-md-4
 
+.row.gy-2.gy-md-4
+  .col-12.col-sm-6.col-md-4(
+    v-for="attraction in attractionList" :key="attraction.ScenicSpotID"  )
+    Card.w-100(:attraction="attraction")
+
 </template>
 
 <script>
@@ -10,14 +15,17 @@ import { inject, ref, onMounted } from 'vue'
 import getData from '@/methods/getData'
 import SortBar from '@/components/SortBar.vue'
 import Card from '@/components/cards/AttractionCard.vue'
+import VueElementLoading from 'vue-element-loading'
 
 export default {
   components: {
     SortBar,
-    Card
+    Card,
+    VueElementLoading
   },
   setup () {
     const attractionList = ref([])
+    const isLoading = ref(true)
     const { lat, lon } = inject('userLocation')
     console.log('attractions:', lat, lon)
 
@@ -28,14 +36,17 @@ export default {
     onMounted(async () => {
       try {
         attractionList.value = await getData(url)
+        isLoading.value = false
       } catch (error) {
         console.log('fetch error', error)
+        isLoading.value = false
       }
       console.log(attractionList.value)
     })
 
     return {
-      attractionList
+      attractionList,
+      isLoading
     }
   }
 }
