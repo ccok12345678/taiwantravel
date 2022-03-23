@@ -9,14 +9,7 @@ Tasty(:tastys="tastys")
 
 Hotels(:hotels="hotels")
 
-VueElementLoading(is-full-screen
-  :active="isLoading"
-  spinner="line-down"
-  size="50"
-  duration="0.8"
-  color="#3FB195"
-  background-color="rgba(50, 50, 50, .8)"
-  text="載入中...")
+VueLoading(v-if="isLoading")
 </template>
 
 <script>
@@ -27,7 +20,7 @@ import Attractions from '@/components/frontpage/FrontPageAttractions.vue'
 import Activities from '@/components/frontpage/FrontPageActivities.vue'
 import Tasty from '@/components/frontpage/FrontPageTasty.vue'
 import Hotels from '@/components/frontpage/FrontPageHotels.vue'
-import VueElementLoading from 'vue-element-loading'
+import VueLoading from '@/components/VueLoading.vue'
 
 export default {
   components: {
@@ -35,7 +28,7 @@ export default {
     Activities,
     Tasty,
     Hotels,
-    VueElementLoading
+    VueLoading
   },
   setup () {
     const attractions = reactive({ list: [] })
@@ -48,11 +41,9 @@ export default {
       lon: ''
     })
 
-    const isLoading = ref(false)
+    const isLoading = ref(true)
 
     try {
-      isLoading.value = true
-
       navigator.geolocation.getCurrentPosition(async (position) => {
         const latitude = await round(position.coords.latitude, 9)
         const longitude = await round(position.coords.longitude, 10)
@@ -90,7 +81,6 @@ export default {
         isLoading.value = false
       })
     } catch (error) {
-      isLoading.value = false
       console.log('location error:', error)
     }
 

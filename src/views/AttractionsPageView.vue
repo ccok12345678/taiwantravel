@@ -8,6 +8,7 @@ SortBar.mb-3.mb-md-4
     v-for="attraction in attractionList" :key="attraction.ScenicSpotID"  )
     Card.w-100(:attraction="attraction")
 
+VueLoading(v-if="isLoading")
 </template>
 
 <script>
@@ -15,13 +16,13 @@ import { inject, ref, onMounted } from 'vue'
 import getData from '@/methods/getData'
 import SortBar from '@/components/SortBar.vue'
 import Card from '@/components/cards/AttractionCard.vue'
-import VueElementLoading from 'vue-element-loading'
+import VueLoading from '@/components/VueLoading.vue'
 
 export default {
   components: {
     SortBar,
     Card,
-    VueElementLoading
+    VueLoading
   },
   setup () {
     const attractionList = ref([])
