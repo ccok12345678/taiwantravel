@@ -3,7 +3,15 @@ InfoPageNavbar(
   :title="tempAttraction.ScenicSpotName"
   :backPath="'/attractions'")
 
-InfoBannerPic(:picture="tempAttraction.Picture")
+InfoBannerPic(
+  v-if="tempAttraction.Picture"
+  :picture="tempAttraction.Picture")
+
+InfoBasic(
+  :phone="tempAttraction.Phone"
+  :location="tempAttraction.Address"
+  :openTime="tempAttraction.OpenTime"
+)
 </template>
 
 <script>
@@ -12,11 +20,13 @@ import { useRoute } from 'vue-router'
 import getData from '@/methods/getData'
 import InfoPageNavbar from '@/components/info/InfoPageNavbar.vue'
 import InfoBannerPic from '@/components/info/InfoBannerPic.vue'
+import InfoBasic from '@/components/info/InfoBasic.vue'
 
 export default {
   components: {
     InfoPageNavbar,
-    InfoBannerPic
+    InfoBannerPic,
+    InfoBasic
   },
   setup (props) {
     const route = useRoute()
@@ -32,7 +42,7 @@ export default {
         const attractionList = await getData(api)
         tempAttraction.value = attractionList
           .filter(attraction => attraction.ScenicSpotID === attractionId)[0]
-        console.log(tempAttraction.value.Picture.PictureUrl1)
+        console.log(tempAttraction.value)
       } catch (error) {
         console.log('fetch error', error)
       }
