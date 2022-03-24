@@ -16,6 +16,10 @@ const routes = [
         name: 'attractions',
         component: () => import('../views/AttractionsPageView.vue')
       }, {
+        path: 'attractions/:attractionId',
+        name: 'attraction',
+        component: () => import('../views/AttractionInfoView.vue')
+      }, {
         path: 'activities',
         name: 'activities',
         component: () => import('../views/ActivitiesPageView.vue')
