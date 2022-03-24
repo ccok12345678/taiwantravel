@@ -6,10 +6,12 @@ section.rounded
     .open-time.text-dark.mb-3(v-if="!!openTime")
       | {{ openTime }}
     .phone.text-dark(v-if="!!phone")
-      | {{ phone }}
+      | {{ phoneNumber }}
 </template>
 
 <script>
+import { ref } from 'vue'
+
 export default {
   props: {
     phone: {
@@ -23,6 +25,13 @@ export default {
     openTime: {
       type: String,
       default: () => ''
+    }
+  },
+  setup (props) {
+    const phoneNumber = ref(props.phone.replace('886-', '0'))
+
+    return {
+      phoneNumber
     }
   }
 }
