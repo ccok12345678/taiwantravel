@@ -1,5 +1,5 @@
 <template lang="pug">
-h2.mb-3.mb-md-4 美食品嚐
+h3.mb-3.mb-md-4 美食品嚐
 
 SortBar.mb-3.mb-md-4
 

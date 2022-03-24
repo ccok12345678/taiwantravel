@@ -1,5 +1,5 @@
 <template lang="pug">
-h2.mb-3.mb-md-4 熱門景點
+h3.mb-3.mb-md-4 熱門景點
 
 SortBar.mb-3.mb-md-4
 
