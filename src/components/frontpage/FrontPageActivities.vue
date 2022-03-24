@@ -1,6 +1,6 @@
 <template lang="pug">
 section
-  Title(:header="{title:'觀光活動', url:'activities'}")
+  Title(:header="{title:'觀光活動', path:'activities'}")
 
   .d-flex.flex-column.flex-sm-row.flex-wrap.justify-content-sm-around.align-items-center
 
@@ -8,7 +8,7 @@ section
       Card(:activity="activity")
 
     router-link.text-primary.text-no-responsive.d-block.d-sm-none(
-      to="/attraction")
+      to="/activities")
       | 更多觀光活動
 </template>
 

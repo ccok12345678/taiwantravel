@@ -1,6 +1,6 @@
 <template lang="pug">
 section
-  Title(:header="{title:'住宿推薦', url:'hotels'}")
+  Title(:header="{title:'住宿推薦', path:'hotels'}")
 
   .d-flex.flex-column.flex-sm-row.flex-wrap.justify-content-sm-around.align-items-center
 
