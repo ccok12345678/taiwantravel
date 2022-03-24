@@ -11,7 +11,8 @@ SortBar.mb-3.mb-md-4
 nav.d-flex.justify-content-center
   Paginate(
     :page-count="pagination.pageTotal"
-    :click-handler="changePage")
+    :click-handler="changePage"
+    )
 
 VueLoading(v-if="isLoading")
 </template>
@@ -34,12 +35,10 @@ export default {
   },
   setup () {
     const attractionList = ref([])
-    const isLoading = ref(true)
     const pagination = ref({})
+    const isLoading = ref(true)
 
     const { lat, lon } = inject('userLocation')
-
-    console.log('attractions:', lat, lon)
 
     const url = lat
       ? `v2/Tourism/ScenicSpot?%24select=ScenicSpotName%2CPicture%2CCity%2COpenTime%2CScenicSpotID&%24top=100&%24spatialFilter=nearby(${lat}%2C%20${lon}%2C%2020000)&%24format=JSON`

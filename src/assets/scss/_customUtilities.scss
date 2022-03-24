@@ -1,5 +1,3 @@
-@import "helper/custommixins";
-
 .text-footnote {
   font-size: 14px;
   color: #00000099;
@@ -11,23 +9,4 @@
 
 .object-cover {
   object-fit: cover;
-}
-
-.location {
-  @include addIcon('@/assets/icons/location_icon_green.svg')
-}
-
-.open-time {
-  @include addIcon('@/assets/icons/clock_icon.svg')
-}
-
-.phone {
-  @include addIcon('@/assets/icons/phone_icon.svg')
-}
-
-.pagination {
-  margin-top: 40px;
-}
-.page-item:not([class~="disabled"]) {
-  cursor: pointer;
 }
