@@ -19,18 +19,27 @@ router-link.rounded.overflow-hidden.bg-white.shadow.d-block.position-relative(
     h4.text-dark.text-truncate {{ hotel.HotelName }}
 
     .vstack
-      .phone.mb-2.text-truncate(:title="hotel.Phone")
-        | + {{ hotel.Phone }}
+      .phone.mb-2.text-truncate(:title="phoneNumber")
+        | {{ phoneNumber }}
       .location.me-3.text-truncate(:title="hotel.Address")
         | {{ hotel.Address }}
 </template>
 
 <script>
+import { ref } from 'vue'
 export default {
   props: {
     hotel: {
       type: Object,
       default: () => {}
+    }
+  },
+  setup (props) {
+    const phoneNumber = ref(props.hotel.Phone
+      .replace('886-', '0'))
+
+    return {
+      phoneNumber
     }
   }
 }

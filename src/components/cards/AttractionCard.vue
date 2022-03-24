@@ -18,10 +18,11 @@ router-link.rounded.overflow-hidden.bg-white.shadow.d-block.position-relative(
   .px-3.py-2
     h4.text-dark {{ attraction.ScenicSpotName }}
 
-    .hstack
-      .location.me-3.text-truncate(:title="attraction.City")
+    .d-flex
+      .location.me-3(:title="attraction.City" v-if="!!attraction.City")
         | {{ attraction.City }}
-      .open-time.text-truncate(:title="attraction.OpenTime")
+      .open-time.text-truncate(
+        :title="attraction.OpenTime" v-if="!!attraction.OpenTime")
         | {{ attraction.OpenTime }}
 </template>
 
