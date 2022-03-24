@@ -32,6 +32,10 @@ const routes = [
         name: 'restaurants',
         component: () => import('../views/RestaurantsPageView.vue')
       }, {
+        path: 'restaurants/:restaurantId',
+        name: 'restaurantInfo',
+        component: () => import('../views/RestaurantInfoView.vue')
+      }, {
         path: 'hotels',
         name: 'hotels',
         component: () => import('../views/HotelsPageView.vue')
