@@ -1,14 +1,20 @@
 <template lang="pug">
-h2 詳細資訊
-div {{ tempAttraction }}
+InfoPageNavbar(
+  :title="tempAttraction.ScenicSpotName"
+  :backPath="'/attractions'")
+
 </template>
 
 <script>
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import getData from '@/methods/getData'
+import InfoPageNavbar from '@/components/InfoPageNavbar.vue'
 
 export default {
+  components: {
+    InfoPageNavbar
+  },
   setup (props) {
     const route = useRoute()
     const { attractionId } = route.params
@@ -22,7 +28,8 @@ export default {
       try {
         const attractionList = await getData(api)
         tempAttraction.value = attractionList
-          .filter(attraction => attraction.ScenicSpotID === attractionId)
+          .filter(attraction => attraction.ScenicSpotID === attractionId)[0]
+        console.log(tempAttraction.value)
       } catch (error) {
         console.log('fetch error', error)
       }
