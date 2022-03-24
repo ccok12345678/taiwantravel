@@ -1,17 +1,19 @@
 <template lang="pug">
-InfoPageNavbar(
-  :title="tempAttraction.ScenicSpotName"
-  :backPath="'/attractions'")
+.text-wrap
+  InfoPageNavbar(
+    :title="tempAttraction.ScenicSpotName"
+    :backPath="'/attractions'")
 
-InfoBannerPic(
-  v-if="tempAttraction.Picture"
-  :picture="tempAttraction.Picture")
+  InfoBannerPic(
+    v-if="tempAttraction.Picture"
+    :picture="tempAttraction.Picture")
 
-InfoBasic(
-  :phone="tempAttraction.Phone"
-  :location="tempAttraction.Address"
-  :openTime="tempAttraction.OpenTime"
-)
+  InfoBasic(
+    :phone="tempAttraction.Phone"
+    :location="tempAttraction.Address"
+    :openTime="tempAttraction.OpenTime")
+
+  InfoIntroduction(:description="tempAttraction.DescriptionDetail")
 </template>
 
 <script>
@@ -21,12 +23,14 @@ import getData from '@/methods/getData'
 import InfoPageNavbar from '@/components/info/InfoPageNavbar.vue'
 import InfoBannerPic from '@/components/info/InfoBannerPic.vue'
 import InfoBasic from '@/components/info/InfoBasic.vue'
+import InfoIntroduction from '@/components/info/InfoIntroduction.vue'
 
 export default {
   components: {
     InfoPageNavbar,
     InfoBannerPic,
-    InfoBasic
+    InfoBasic,
+    InfoIntroduction
   },
   setup (props) {
     const route = useRoute()
