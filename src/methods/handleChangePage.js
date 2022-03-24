@@ -1,6 +1,6 @@
 export default function handleChangePage (data, nowPage = 1) {
   const dataTotal = data.length
-  const perPage = 9
+  const perPage = 18
   const pageTotal = Math.ceil(dataTotal / perPage)
 
   let currentPage = nowPage
