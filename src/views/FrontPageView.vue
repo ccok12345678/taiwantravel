@@ -5,7 +5,7 @@ Attractions(
 
 Activities(:activities="activities")
 
-Tasty(:tastys="tastys")
+Restaurants(:restaurants="restaurants")
 
 Hotels(:hotels="hotels")
 
@@ -18,7 +18,7 @@ import { round } from 'lodash'
 import getData from '@/methods/getData'
 import Attractions from '@/components/frontpage/FrontPageAttractions.vue'
 import Activities from '@/components/frontpage/FrontPageActivities.vue'
-import Tasty from '@/components/frontpage/FrontPageTasty.vue'
+import Restaurants from '@/components/frontpage/FrontPageRestaurants.vue'
 import Hotels from '@/components/frontpage/FrontPageHotels.vue'
 import VueLoading from '@/components/VueLoading.vue'
 
@@ -26,14 +26,14 @@ export default {
   components: {
     Attractions,
     Activities,
-    Tasty,
+    Restaurants,
     Hotels,
     VueLoading
   },
   setup () {
     const attractions = reactive({ list: [] })
     const activities = reactive({ list: [] })
-    const tastys = reactive({ list: [] })
+    const restaurants = reactive({ list: [] })
     const hotels = reactive({ list: [] })
 
     const location = reactive({
@@ -59,7 +59,7 @@ export default {
         activities.list = await getData(activitiesApi)
 
         const tastyApi = `v2/Tourism/Restaurant?%24top=3&%24spatialFilter=nearby(${latitude}%2C%20${longitude}%2C%203000)&%24format=JSON`
-        tastys.list = await getData(tastyApi)
+        restaurants.list = await getData(tastyApi)
 
         const hotelsApi = `v2/Tourism/Hotel?%24top=3&%24spatialFilter=nearby(${latitude}%2C%20${longitude}%2C%205000)&%24format=JSON`
         hotels.list = await getData(hotelsApi)
@@ -73,7 +73,7 @@ export default {
         activities.list = await getData(activitiesApi)
 
         const tastyApi = 'v2/Tourism/Restaurant?%24top=3&%24format=JSON'
-        tastys.list = await getData(tastyApi)
+        restaurants.list = await getData(tastyApi)
 
         const hotelsApi = 'v2/Tourism/Hotel?%24top=3&%24format=JSON'
         hotels.list = await getData(hotelsApi)
@@ -87,7 +87,7 @@ export default {
     return {
       attractions,
       activities,
-      tastys,
+      restaurants,
       hotels,
       location,
       isLoading

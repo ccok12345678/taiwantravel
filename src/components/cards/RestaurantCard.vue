@@ -1,13 +1,13 @@
 <template lang="pug">
 router-link.rounded.overflow-hidden.bg-white.shadow.d-block.position-relative(
-  :to="`tastys/${tasty.RestaurantID}`"
-  :title="tasty.RestaurantName")
+  :to="`restaurants/${restaurant.RestaurantID}`"
+  :title="restaurant.RestaurantName")
 
   img.position-absolute.link(src="@/assets/icons/link_icon.svg" alt="link icon")
 
-  img.object-cover.w-100(v-if="'PictureUrl1' in tasty.Picture"
-    :src="tasty.Picture.PictureUrl1"
-    :alt="tasty.RestaurantName"
+  img.object-cover.w-100(v-if="'PictureUrl1' in restaurant.Picture"
+    :src="restaurant.Picture.PictureUrl1"
+    :alt="restaurant.RestaurantName"
     height="163")
   img.object-cover.w-100(v-else
     src="@/assets/images/illustration.png"
@@ -16,19 +16,19 @@ router-link.rounded.overflow-hidden.bg-white.shadow.d-block.position-relative(
     height="163")
 
   .px-3.py-2
-    h4.text-dark.text-truncate {{ tasty.RestaurantName }}
+    h4.text-dark.text-truncate {{ restaurant.RestaurantName }}
 
     .vstack
-      .open-time.mb-2.text-truncate(:title="tasty.OpenTime")
-        | {{ tasty.OpenTime }}
-      .location.me-3.text-truncate(:title="tasty.Address")
-        | {{ tasty.Address }}
+      .open-time.mb-2.text-truncate(:title="restaurant.OpenTime")
+        | {{ restaurant.OpenTime }}
+      .location.me-3.text-truncate(:title="restaurant.Address")
+        | {{ restaurant.Address }}
 </template>
 
 <script>
 export default {
   props: {
-    tasty: {
+    restaurant: {
       type: Object,
       default: () => {}
     }

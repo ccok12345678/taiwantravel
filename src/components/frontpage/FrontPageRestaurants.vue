@@ -4,8 +4,8 @@ section
 
   .d-flex.flex-column.flex-sm-row.flex-wrap.justify-content-sm-around.align-items-center
 
-    template(v-for="tasty in list" :key="tasty.RestaurantID")
-      Card(:tasty="tasty")
+    template(v-for="restaurant in list" :key="restaurant.RestaurantID")
+      Card(:restaurant="restaurant")
 
     router-link.text-primary.text-no-responsive.d-block.d-sm-none(
       to="/restaurants")
@@ -15,7 +15,7 @@ section
 <script>
 import { toRefs } from 'vue'
 import Title from '@/components/frontpage/FrontPageTitle.vue'
-import Card from '@/components/cards/TastyCard.vue'
+import Card from '@/components/cards/RestaurantCard.vue'
 
 export default {
   components: {
@@ -23,7 +23,7 @@ export default {
     Card
   },
   props: {
-    tastys: {
+    restaurants: {
       type: Array,
       default: () => []
     },
@@ -33,7 +33,7 @@ export default {
     }
   },
   setup (props) {
-    const { list } = toRefs(props.tastys)
+    const { list } = toRefs(props.restaurants)
 
     return {
       list
