@@ -1,6 +1,7 @@
 <template lang="pug">
 button.menu-button.rounded.text-nowrap(
   type="button"
+  :title="city.name"
   @click="handleClick"
 )
   | {{ city.name }}

@@ -1,0 +1,47 @@
+@import "helper/custommixins";
+
+.location {
+  @include addIcon('@/assets/icons/location_icon_green.svg')
+}
+
+.open-time {
+  @include addIcon('@/assets/icons/clock_icon.svg')
+}
+
+.phone {
+  @include addIcon('@/assets/icons/phone_icon.svg')
+}
+
+.pagination {
+  margin-top: 40px;
+}
+.page-item {
+  font-size: 16px ;
+
+  &:first-of-type, &:last-of-type {
+    display: none;
+  }
+
+  &:not(.disabled) + &:not(.disabled) {
+    margin-left: 12px;
+  }
+
+  &.disabled {
+    .page-link {
+      border: none;
+    }
+  }
+
+  &:not(.disabled) {
+    .page-link {
+      cursor: pointer;
+      width: 44; height: 44;
+      border-radius: .5rem;
+    }
+  }
+}
+.page-link {
+  &:active, &:focus {
+    box-shadow: none;
+  }
+}

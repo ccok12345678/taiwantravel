@@ -9,8 +9,24 @@ const routes = [
     children: [
       {
         path: '/',
-        name: 'FrontPage',
+        name: 'frontpage',
         component: () => import('../views/FrontPageView.vue')
+      }, {
+        path: 'attractions',
+        name: 'attractions',
+        component: () => import('../views/AttractionsPageView.vue')
+      }, {
+        path: 'activities',
+        name: 'activities',
+        component: () => import('../views/ActivitiesPageView.vue')
+      }, {
+        path: 'restaurants',
+        name: 'restaurants',
+        component: () => import('../views/RestaurantsPageView.vue')
+      }, {
+        path: 'hotels',
+        name: 'hotels',
+        component: () => import('../views/HotelsPageView.vue')
       }
     ]
   }

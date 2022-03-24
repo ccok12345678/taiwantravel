@@ -1,5 +1,15 @@
 import jsSHA from 'jssha'
 
+async function getData (url) {
+  const baseUrl = 'https://ptx.transportdata.tw/MOTC/'
+  const api = baseUrl + url
+  const response = await fetch(api, {
+    headers: GetAuthorizationHeader()
+  })
+  const data = await response.json()
+  return data
+}
+
 function GetAuthorizationHeader () {
   const AppID = process.env.VUE_APP_APP_ID
   const AppKey = process.env.VUE_APP_APP_KEY
@@ -13,15 +23,6 @@ function GetAuthorizationHeader () {
   const Authorization = `hmac username="${AppID}", algorithm="hmac-sha1", headers="x-date", signature="${HMAC}"`
 
   return { Authorization: Authorization, 'X-Date': GMTString }
-}
-
-async function getData (url) {
-  const response = await fetch(url, {
-    headers: GetAuthorizationHeader()
-  })
-  const data = await response.json()
-  console.log('data:', data)
-  return data
 }
 
 export default getData
