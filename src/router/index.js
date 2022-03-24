@@ -39,6 +39,10 @@ const routes = [
         path: 'hotels',
         name: 'hotels',
         component: () => import('../views/HotelsPageView.vue')
+      }, {
+        path: 'hotels/:hotelId',
+        name: 'hotelInfo',
+        component: () => import('../views/HotelInfoView.vue')
       }
     ]
   }
