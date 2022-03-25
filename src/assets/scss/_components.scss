@@ -45,3 +45,11 @@
     box-shadow: none;
   }
 }
+
+.map {
+  height: 280px;
+
+  @media (max-width: 567px) {
+    height: 160px
+  }
+}

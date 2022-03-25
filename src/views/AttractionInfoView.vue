@@ -14,6 +14,8 @@
     :openTime="tempAttraction.OpenTime")
 
   InfoIntroduction(:description="tempAttraction.DescriptionDetail")
+
+  InfoTravel(:position="tempAttraction.Position")
 </template>
 
 <script>
@@ -24,13 +26,15 @@ import InfoPageNavbar from '@/components/info/InfoPageNavbar.vue'
 import InfoBannerPic from '@/components/info/InfoBannerPic.vue'
 import InfoBasic from '@/components/info/InfoBasic.vue'
 import InfoIntroduction from '@/components/info/InfoIntroduction.vue'
+import InfoTravel from '@/components/info/InfoTravel.vue'
 
 export default {
   components: {
     InfoPageNavbar,
     InfoBannerPic,
     InfoBasic,
-    InfoIntroduction
+    InfoIntroduction,
+    InfoTravel
   },
   setup (props) {
     const route = useRoute()
@@ -46,7 +50,7 @@ export default {
         const attractionList = await getData(api)
         tempAttraction.value = attractionList
           .filter(attraction => attraction.ScenicSpotID === attractionId)[0]
-        console.log(tempAttraction.value)
+        console.log('attraction:', tempAttraction.value)
       } catch (error) {
         console.log('fetch error', error)
       }
