@@ -16,17 +16,33 @@ const routes = [
         name: 'attractions',
         component: () => import('../views/AttractionsPageView.vue')
       }, {
+        path: 'attractions/:attractionId',
+        name: 'attractionInfo',
+        component: () => import('../views/AttractionInfoView.vue')
+      }, {
         path: 'activities',
         name: 'activities',
         component: () => import('../views/ActivitiesPageView.vue')
+      }, {
+        path: 'activities/:activityId',
+        name: 'activityInfo',
+        component: () => import('../views/ActivityInfoView.vue')
       }, {
         path: 'restaurants',
         name: 'restaurants',
         component: () => import('../views/RestaurantsPageView.vue')
       }, {
+        path: 'restaurants/:restaurantId',
+        name: 'restaurantInfo',
+        component: () => import('../views/RestaurantInfoView.vue')
+      }, {
         path: 'hotels',
         name: 'hotels',
         component: () => import('../views/HotelsPageView.vue')
+      }, {
+        path: 'hotels/:hotelId',
+        name: 'hotelInfo',
+        component: () => import('../views/HotelInfoView.vue')
       }
     ]
   }

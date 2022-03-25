@@ -1,5 +1,5 @@
 <template lang="pug">
-h2.mb-3.mb-md-4 觀光活動
+h3.mb-3.mb-md-4 觀光活動
 
 SortBar.mb-3.mb-md-4
 
@@ -57,6 +57,7 @@ export default {
     })
 
     function changePage (nowPage) {
+      window.scrollTo(0, 0)
       pagination.value = handleChangePage(activityList.value, nowPage)
     }
 

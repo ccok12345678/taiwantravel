@@ -20,6 +20,15 @@ a {
   text-decoration: none;
 }
 
+p {
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
 .btn, .form-control {
   &:focus {
     box-shadow: none;

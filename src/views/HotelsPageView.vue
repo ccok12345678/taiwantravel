@@ -1,5 +1,5 @@
 <template lang="pug">
-h2.mb-3.mb-md-4 住宿推薦
+h3.mb-3.mb-md-4 住宿推薦
 
 SortBar.mb-3.mb-md-4
 
@@ -57,6 +57,7 @@ export default {
     })
 
     function changePage (nowPage) {
+      window.scrollTo(0, 0)
       pagination.value = handleChangePage(hotelList.value, nowPage)
     }
 

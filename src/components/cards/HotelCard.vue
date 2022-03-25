@@ -1,6 +1,6 @@
 <template lang="pug">
 router-link.rounded.overflow-hidden.bg-white.shadow.d-block.position-relative(
-  :to="`hotels/${hotel.HotelID}`"
+  :to="`/hotels/${hotel.HotelID}`"
   :title="hotel.HotelName")
 
   img.position-absolute.link(src="@/assets/icons/link_icon.svg" alt="link icon")
