@@ -30,6 +30,8 @@
     :nearby="nearby"
     :city="tempAttraction.City"
   )
+
+VueLoading(v-if="isLoading")
 </template>
 
 <script>
@@ -42,6 +44,7 @@ import InfoBasic from '@/components/info/InfoBasic.vue'
 import InfoIntroduction from '@/components/info/InfoIntroduction.vue'
 import InfoTravel from '@/components/info/InfoTravel.vue'
 import InfoMoreRelates from '@/components/info/InfoMoreRelates.vue'
+import VueLoading from '@/components/VueLoading.vue'
 
 export default {
   components: {
@@ -50,13 +53,15 @@ export default {
     InfoBasic,
     InfoIntroduction,
     InfoTravel,
-    InfoMoreRelates
+    InfoMoreRelates,
+    VueLoading
   },
   setup (props) {
     const route = useRoute()
     const { attractionId } = route.params
 
     const tempAttraction = ref({})
+    const isLoading = ref(true)
 
     const api = 'v2/Tourism/ScenicSpot?%24format=JSON'
 
@@ -65,18 +70,19 @@ export default {
         const attractionList = await getData(api)
         tempAttraction.value = attractionList
           .filter(attraction => attraction.ScenicSpotID === attractionId)[0]
-        console.log('attraction:', tempAttraction.value)
+        isLoading.value = false
       } catch (error) {
         console.log('fetch error', error)
       }
     })
 
     watch(() => route.params.attractionId, async (newId) => {
+      isLoading.value = true
       try {
         const attractionList = await getData(api)
         tempAttraction.value = attractionList
           .filter(attraction => attraction.ScenicSpotID === newId)[0]
-        console.log('attraction:', tempAttraction.value)
+        isLoading.value = false
       } catch (error) {
         console.log('fetch error', error)
       }
@@ -96,7 +102,8 @@ export default {
 
     return {
       tempAttraction,
-      nearby
+      nearby,
+      isLoading
     }
   }
 }
