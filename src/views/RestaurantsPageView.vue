@@ -57,6 +57,7 @@ export default {
     })
 
     function changePage (nowPage) {
+      window.scrollTo(0, 0)
       pagination.value = handleChangePage(restaurantList.value, nowPage)
     }
 

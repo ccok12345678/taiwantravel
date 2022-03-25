@@ -57,7 +57,7 @@ export default {
     })
 
     function changePage (nowPage) {
-      console.log(nowPage)
+      window.scrollTo(0, 0)
       pagination.value = handleChangePage(attractionList.value, nowPage)
     }
 

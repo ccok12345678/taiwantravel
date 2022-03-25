@@ -7,11 +7,19 @@
 </template>
 
 <script>
+import { watch } from 'vue'
+import { useRoute } from 'vue-router'
 import SideMenu from '@/components/menu/SideMenu.vue'
 
 export default {
   components: {
     SideMenu
+  },
+  setup (props) {
+    const route = useRoute()
+    watch(() => route.path, () => {
+      window.scrollTo(0, 0)
+    })
   }
 }
 </script>
