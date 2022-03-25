@@ -18,11 +18,17 @@ section.mt-4
       ol-tile-layer
         ol-source-osm
 
+      ol-vector-layer
+        ol-source-vector
+          ol-feature
+            ol-geom-point(:coordinates="center")
+            ol-style
+              ol-style-icon(:src="mark" scale="1.7")
 </template>
 
 <script>
 import { ref, toRefs, watch } from 'vue'
-// import mark from '@/assets/icons/location_icon_purple.svg'
+import mark from '@/assets/icons/location_icon_red.svg'
 
 export default {
   props: {
@@ -53,7 +59,8 @@ export default {
     return {
       center,
       projection,
-      zoom
+      zoom,
+      mark
     }
   }
 }
