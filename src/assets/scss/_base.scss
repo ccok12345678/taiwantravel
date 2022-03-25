@@ -20,6 +20,10 @@ a {
   text-decoration: none;
 }
 
+p {
+  margin-bottom: 10px;
+}
+
 .btn, .form-control {
   &:focus {
     box-shadow: none;

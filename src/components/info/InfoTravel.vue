@@ -3,7 +3,7 @@ section.mt-4
   h6.text-primary.mb-3 交通方式
 
   //- map
-  .rounded.overflow-hidden
+  .rounded.overflow-hidden.mb-3(v-if="!!center.length")
     ol-map.map(
       :loadtileswhileanimating='true'
       :loadtileswhileinteracting='true'
@@ -24,6 +24,9 @@ section.mt-4
             ol-geom-point(:coordinates="center")
             ol-style
               ol-style-icon(:src="mark" scale="1.7")
+
+  //- travel info
+  div(v-html="travelInfo")
 </template>
 
 <script>
@@ -34,18 +37,16 @@ export default {
   props: {
     position: {
       type: Object,
-      default: () => ({
-        PositionLon: 120.9798175,
-        PositionLat: 23.9739881
-      })
+      default: () => {}
+    },
+    travelInfo: {
+      type: String,
+      default: () => ''
     }
   },
   setup (props) {
     const { position } = toRefs(props)
-    const center = ref([
-      position.value.PositionLon,
-      position.value.PositionLat
-    ])
+    const center = ref([])
     const projection = ref('EPSG:4326')
     const zoom = ref(15)
 

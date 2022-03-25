@@ -15,7 +15,10 @@
 
   InfoIntroduction(:description="tempAttraction.DescriptionDetail")
 
-  InfoTravel(:position="tempAttraction.Position")
+  InfoTravel(
+    :position="tempAttraction.Position"
+    :travelInfo="tempAttraction.TravelInfo"
+  )
 </template>
 
 <script>
