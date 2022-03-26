@@ -13,6 +13,7 @@ specifiers:
   eslint-plugin-vue: ^8.0.3
   jssha: ^3.2.0
   lodash: ^4.17.21
+  mitt: ^3.0.0
   sass: ^1.32.7
   sass-loader: ^12.0.0
   vue: ^3.2.13
@@ -26,6 +27,7 @@ dependencies:
   bootstrap: 5.1.3
   jssha: 3.2.0
   lodash: 4.17.21
+  mitt: 3.0.0
   vue: 3.2.31
   vue-element-loading: 3.0.1
   vue-router: 4.0.14_vue@3.2.31
@@ -3609,6 +3611,10 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
+
+  /mitt/3.0.0:
+    resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==}
+    dev: false
 
   /mkdirp/0.5.5:
     resolution: {integrity: sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==}

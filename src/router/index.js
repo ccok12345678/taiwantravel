@@ -43,6 +43,17 @@ const routes = [
         path: 'hotels/:hotelId',
         name: 'hotelInfo',
         component: () => import('../views/info/HotelInfoView.vue')
+      }, {
+        path: 'city/:cityId',
+        name: 'city',
+        component: () => import('../views/city/CityPageView.vue'),
+        children: [
+          {
+            path: ':searchKeyword',
+            name: 'searchResult',
+            component: () => import('../views/city/CityPageView.vue')
+          }
+        ]
       }
     ]
   }

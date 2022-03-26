@@ -2,12 +2,69 @@
 //- search input
 label(for="keyword")
   small.d-none 輸入關鍵字
+
   .input-group.border.rounded.bg-light
-    input#keyword.form-control.border-0(type="search"
-      placeholder="搜尋關鍵字")
-    button.btn.d-flex(type="button" title="搜尋")
+
+    input#keyword.form-control.border-0(
+      type="search"
+      placeholder="搜尋關鍵字"
+      v-model="keyword"
+      @input.prevent="handleInput"
+    )
+
+    button.btn.d-flex(
+      type="button"
+      title="搜尋"
+      @click="handleInput"
+    )
       img.my-auto(src="@/assets/icons/search.svg" alt="search icon")
 </template>
+
+<script>
+import { ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import emitter from '@/methods/emitter'
+
+export default {
+  setup (props) {
+    const keyword = ref('')
+    const cityName = ref('')
+
+    const router = useRouter()
+    const route = useRoute()
+
+    keyword.value = route.params.searchKeyword
+
+    emitter.on('emit-cityName', (city) => {
+      cityName.value = city
+    })
+
+    function handleInput () {
+      if (keyword.value) {
+        router.push({
+          name: 'searchResult',
+          params: {
+            cityId: cityName.value,
+            searchKeyword: keyword.value
+          }
+        })
+      } else {
+        router.push({
+          name: 'city',
+          params: {
+            cityId: cityName.value
+          }
+        })
+      }
+    }
+
+    return {
+      keyword,
+      handleInput
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 input {
