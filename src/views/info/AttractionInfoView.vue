@@ -19,6 +19,7 @@ main.text-wrap
 
   InfoIntroduction(
     :description="tempAttraction.DescriptionDetail"
+    :title="'景點'"
   )
 
   InfoTravel(
@@ -26,7 +27,7 @@ main.text-wrap
     :travelInfo="tempAttraction.TravelInfo"
   )
 
-  InfoMoreRelates(
+  MoreAttractions(
     :nearby="nearby"
     :city="tempAttraction.City"
   )
@@ -43,7 +44,7 @@ import InfoBannerPic from '@/components/info/InfoBannerPic.vue'
 import InfoBasic from '@/components/info/InfoBasic.vue'
 import InfoIntroduction from '@/components/info/InfoIntroduction.vue'
 import InfoTravel from '@/components/info/InfoTravel.vue'
-import InfoMoreRelates from '@/components/info/InfoMoreRelates.vue'
+import MoreAttractions from '@/components/info/MoreAttractions.vue'
 import VueLoading from '@/components/VueLoading.vue'
 
 export default {
@@ -53,7 +54,7 @@ export default {
     InfoBasic,
     InfoIntroduction,
     InfoTravel,
-    InfoMoreRelates,
+    MoreAttractions,
     VueLoading
   },
   setup (props) {
