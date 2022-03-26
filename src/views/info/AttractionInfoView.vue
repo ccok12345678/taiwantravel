@@ -1,5 +1,5 @@
 <template lang="pug">
-.text-wrap(v-if="!!tempAttraction.ScenicSpotName")
+main.text-wrap
   InfoPageNavbar(
     v-if="!!tempAttraction.ScenicSpotName"
     :title="tempAttraction.ScenicSpotName"
