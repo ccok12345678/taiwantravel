@@ -1,5 +1,5 @@
 <template lang="pug">
-.text-wrap(v-if="!!tempAttraction.ScenicSpotName")
+main.text-wrap
   InfoPageNavbar(
     v-if="!!tempAttraction.ScenicSpotName"
     :title="tempAttraction.ScenicSpotName"
@@ -19,6 +19,7 @@
 
   InfoIntroduction(
     :description="tempAttraction.DescriptionDetail"
+    :title="'景點'"
   )
 
   InfoTravel(
@@ -26,7 +27,7 @@
     :travelInfo="tempAttraction.TravelInfo"
   )
 
-  InfoMoreRelates(
+  MoreAttractions(
     :nearby="nearby"
     :city="tempAttraction.City"
   )
@@ -43,7 +44,7 @@ import InfoBannerPic from '@/components/info/InfoBannerPic.vue'
 import InfoBasic from '@/components/info/InfoBasic.vue'
 import InfoIntroduction from '@/components/info/InfoIntroduction.vue'
 import InfoTravel from '@/components/info/InfoTravel.vue'
-import InfoMoreRelates from '@/components/info/InfoMoreRelates.vue'
+import MoreAttractions from '@/components/info/MoreAttractions.vue'
 import VueLoading from '@/components/VueLoading.vue'
 
 export default {
@@ -53,7 +54,7 @@ export default {
     InfoBasic,
     InfoIntroduction,
     InfoTravel,
-    InfoMoreRelates,
+    MoreAttractions,
     VueLoading
   },
   setup (props) {
@@ -61,6 +62,7 @@ export default {
     const { attractionId } = route.params
 
     const tempAttraction = ref({})
+    const nearby = ref([])
     const isLoading = ref(true)
 
     const api = 'v2/Tourism/ScenicSpot?%24format=JSON'
@@ -70,6 +72,11 @@ export default {
         const attractionList = await getData(api)
         tempAttraction.value = attractionList
           .filter(attraction => attraction.ScenicSpotID === attractionId)[0]
+
+        const { PositionLon, PositionLat } = tempAttraction.value.Position
+        const nearbyApi = `v2/Tourism/ScenicSpot?%24select=ScenicSpotName%2CPicture%2CCity%2COpenTime%2CScenicSpotID&%24top=5&%24spatialFilter=nearby(${PositionLat}%2C%20${PositionLon}%2C%205000)&%24format=JSON`
+        nearby.value = await getData(nearbyApi)
+
         isLoading.value = false
       } catch (error) {
         console.log('fetch error', error)
@@ -82,23 +89,16 @@ export default {
         const attractionList = await getData(api)
         tempAttraction.value = attractionList
           .filter(attraction => attraction.ScenicSpotID === newId)[0]
+
+        const { PositionLon, PositionLat } = tempAttraction.value.Position
+        const nearbyApi = `v2/Tourism/ScenicSpot?%24select=ScenicSpotName%2CPicture%2CCity%2COpenTime%2CScenicSpotID&%24top=5&%24spatialFilter=nearby(${PositionLat}%2C%20${PositionLon}%2C%205000)&%24format=JSON`
+        nearby.value = await getData(nearbyApi)
+
         isLoading.value = false
       } catch (error) {
         console.log('fetch error', error)
       }
     }, { deep: true })
-
-    const nearby = ref([])
-
-    watch(tempAttraction, async (attraction) => {
-      const { PositionLon, PositionLat } = attraction.Position
-      const api = `v2/Tourism/ScenicSpot?%24select=ScenicSpotName%2CPicture%2CCity%2COpenTime%2CScenicSpotID&%24top=5&%24spatialFilter=nearby(${PositionLat}%2C%20${PositionLon}%2C%205000)&%24format=JSON`
-      try {
-        nearby.value = await getData(api)
-      } catch (error) {
-        console.log('fetch error:', error)
-      }
-    })
 
     return {
       tempAttraction,

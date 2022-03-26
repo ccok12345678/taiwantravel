@@ -10,7 +10,7 @@ section.rounded
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 
 export default {
   props: {
@@ -28,7 +28,11 @@ export default {
     }
   },
   setup (props) {
-    const phoneNumber = ref(props.phone.replace('886-', '0'))
+    const phoneNumber = ref('')
+
+    watchEffect(() => {
+      phoneNumber.value = props.phone.replace('886-', '0')
+    })
 
     return {
       phoneNumber

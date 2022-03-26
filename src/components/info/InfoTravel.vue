@@ -1,6 +1,9 @@
 <template lang="pug">
 section.mt-4
-  h6.text-primary.mb-3 交通方式
+  h6.text-primary.mb-3(v-if="!!travelInfo")
+    | 交通方式
+  h6.text-primary.mb-3(v-else)
+    | 地圖
 
   //- map
   .rounded.overflow-hidden.mb-3(v-if="!!center.length")

@@ -1,6 +1,7 @@
 <template lang="pug">
-article.mt-4
-  h6.text-primary.mb-3 景點介紹
+article.mt-4(v-if="description !== ''")
+  h6.text-primary.mb-3
+    | {{ title }}介紹
   p {{ description }}
 </template>
 
@@ -9,7 +10,11 @@ export default {
   props: {
     description: {
       type: String,
-      default: () => '無提供介紹'
+      default: () => ''
+    },
+    title: {
+      type: String,
+      default: () => ''
     }
   }
 }
