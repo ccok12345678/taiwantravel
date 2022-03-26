@@ -8,7 +8,7 @@ button.menu-button.rounded.text-nowrap(
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default {
   props: {
@@ -19,10 +19,11 @@ export default {
   },
   setup (props, context) {
     const { emit } = context
+    const router = useRouter()
 
-    const cityValue = reactive(props.city)
     const handleClick = () => {
-      emit('emit-click', cityValue)
+      emit('emit-click', props.city)
+      router.push({ name: 'city', params: { cityId: props.city.english } })
     }
 
     return {
