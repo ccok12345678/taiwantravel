@@ -62,6 +62,7 @@ export default {
 
     const tempActivity = ref({})
     const duration = ref('')
+    const nearby = ref([])
 
     const isLoading = ref(true)
 
@@ -81,6 +82,10 @@ export default {
           .toLocaleString()
           .replace('上午12:00:00', '')
         duration.value = `${start} ~ ${end}`
+
+        const { PositionLon, PositionLat } = tempActivity.value.Position
+        const nearbyApi = `v2/Tourism/Activity?%24select=ActivityID%2CActivityName%2CPicture%2CLocation&%24top=5&%24spatialFilter=nearby(${PositionLat}%2C%20${PositionLon}%2C%2010000)&%24format=JSON`
+        nearby.value = await getData(nearbyApi)
 
         isLoading.value = false
       } catch (error) {
@@ -104,23 +109,15 @@ export default {
           .replace('上午12:00:00', '')
         duration.value = `${start} ~ ${end}`
 
+        const { PositionLon, PositionLat } = tempActivity.value.Position
+        const nearbyApi = `v2/Tourism/Activity?%24select=ActivityID%2CActivityName%2CPicture%2CLocation&%24top=5&%24spatialFilter=nearby(${PositionLat}%2C%20${PositionLon}%2C%2010000)&%24format=JSON`
+        nearby.value = await getData(nearbyApi)
+
         isLoading.value = false
       } catch (error) {
         console.log('fetch error', error)
       }
     }, { deep: true })
-
-    const nearby = ref([])
-
-    watch(tempActivity, async (activity) => {
-      const { PositionLon, PositionLat } = activity.Position
-      const api = `v2/Tourism/Activity?%24select=ActivityID%2CActivityName%2CPicture%2CLocation&%24top=5&%24spatialFilter=nearby(${PositionLat}%2C%20${PositionLon}%2C%2010000)&%24format=JSON`
-      try {
-        nearby.value = await getData(api)
-      } catch (error) {
-        console.log('fetch error:', error)
-      }
-    })
 
     return {
       tempActivity,
