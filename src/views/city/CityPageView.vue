@@ -27,6 +27,7 @@ import Card from '@/components/cards/AttractionCard.vue'
 import VueLoading from '@/components/VueLoading.vue'
 import Paginate from 'vuejs-paginate-next'
 import cities from '@/data/cities'
+import emitter from '@/methods/emitter'
 
 export default {
   components: {
@@ -57,7 +58,8 @@ export default {
       } catch (error) {
         console.log('fetch error', error)
       }
-      console.log(attractionList.value)
+      emitter.emit('emit-attractionList', attractionList.value)
+      // console.log(attractionList.value)
     })
 
     watch(() => route.params.cityId, async (newCity) => {
@@ -72,13 +74,19 @@ export default {
         console.log('fetch error', error)
         isLoading.value = false
       }
-      console.log(attractionList.value)
+      emitter.emit('emit-attractionList', attractionList.value)
+      // console.log(attractionList.value)
     })
 
     function changePage (nowPage) {
       window.scrollTo(0, 0)
       pagination.value = handleChangePage(attractionList.value, nowPage)
     }
+
+    // search
+    emitter.on('emit-searchResult', (result) => {
+      pagination.value = handleChangePage(result)
+    })
 
     return {
       cityName,
