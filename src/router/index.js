@@ -18,7 +18,7 @@ const routes = [
       }, {
         path: 'attractions/:attractionId',
         name: 'attractionInfo',
-        component: () => import('../views/AttractionInfoView.vue')
+        component: () => import('../views/info/AttractionInfoView.vue')
       }, {
         path: 'activities',
         name: 'activities',
@@ -26,7 +26,7 @@ const routes = [
       }, {
         path: 'activities/:activityId',
         name: 'activityInfo',
-        component: () => import('../views/ActivityInfoView.vue')
+        component: () => import('../views/info/ActivityInfoView.vue')
       }, {
         path: 'restaurants',
         name: 'restaurants',
@@ -34,7 +34,7 @@ const routes = [
       }, {
         path: 'restaurants/:restaurantId',
         name: 'restaurantInfo',
-        component: () => import('../views/RestaurantInfoView.vue')
+        component: () => import('../views/info/RestaurantInfoView.vue')
       }, {
         path: 'hotels',
         name: 'hotels',
@@ -42,7 +42,7 @@ const routes = [
       }, {
         path: 'hotels/:hotelId',
         name: 'hotelInfo',
-        component: () => import('../views/HotelInfoView.vue')
+        component: () => import('../views/info/HotelInfoView.vue')
       }
     ]
   }
