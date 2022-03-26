@@ -28,6 +28,7 @@ import VueLoading from '@/components/VueLoading.vue'
 import Paginate from 'vuejs-paginate-next'
 import cities from '@/data/cities'
 import emitter from '@/methods/emitter'
+import filter from '@/methods/keywordFilter'
 
 export default {
   components: {
@@ -38,7 +39,7 @@ export default {
   },
   setup () {
     const route = useRoute()
-    const cityId = route.params.cityId
+    const { cityId, searchKeyword } = route.params
 
     const attractionList = ref([])
     const pagination = ref({})
@@ -53,13 +54,14 @@ export default {
       cityName.value = cities.filter(city => city.english === cityId)[0]
       try {
         attractionList.value = await getData(api)
-        pagination.value = handleChangePage(attractionList.value)
+        pagination.value = handleChangePage(
+          filter(searchKeyword, attractionList.value)
+        )
         isLoading.value = false
       } catch (error) {
         console.log('fetch error', error)
       }
-      emitter.emit('emit-attractionList', attractionList.value)
-      // console.log(attractionList.value)
+      emitter.emit('emit-cityName', cityName.value.english)
     })
 
     watch(() => route.params.cityId, async (newCity) => {
@@ -68,24 +70,30 @@ export default {
       try {
         const api = `v2/Tourism/ScenicSpot/${newCity}?%24format=JSON`
         attractionList.value = await getData(api)
-        pagination.value = handleChangePage(attractionList.value)
+        pagination.value = handleChangePage(
+          filter(route.params.searchKeyword, attractionList.value)
+        )
         isLoading.value = false
       } catch (error) {
         console.log('fetch error', error)
         isLoading.value = false
       }
-      emitter.emit('emit-attractionList', attractionList.value)
-      // console.log(attractionList.value)
+      emitter.emit('emit-cityName', cityName.value.english)
     })
 
-    function changePage (nowPage) {
+    function changePage (newPage) {
       window.scrollTo(0, 0)
-      pagination.value = handleChangePage(attractionList.value, nowPage)
+      pagination.value = handleChangePage(
+        filter(route.params.searchKeyword, attractionList.value),
+        newPage
+      )
     }
 
     // search
-    emitter.on('emit-searchResult', (result) => {
-      pagination.value = handleChangePage(result)
+    watch(() => route.params.searchKeyword, (keyword) => {
+      pagination.value = handleChangePage(
+        filter(keyword, attractionList.value)
+      )
     })
 
     return {

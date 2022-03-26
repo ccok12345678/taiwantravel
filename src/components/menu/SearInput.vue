@@ -22,29 +22,40 @@ label(for="keyword")
 
 <script>
 import { ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import emitter from '@/methods/emitter'
 
 export default {
   setup (props) {
     const keyword = ref('')
-    const tempList = ref([])
+    const cityName = ref('')
 
-    emitter.on('emit-attractionList', (list) => {
-      tempList.value = list
+    const router = useRouter()
+    const route = useRoute()
+
+    keyword.value = route.params.searchKeyword
+
+    emitter.on('emit-cityName', (city) => {
+      cityName.value = city
     })
 
     function handleInput () {
-      let filterList = []
-      tempList.value.forEach(attraction => {
-        if (('ScenicSpotName' in attraction) && attraction.ScenicSpotName.includes(keyword.value)) {
-          filterList = [...filterList, attraction]
-        } else if (('Address' in attraction) && attraction.Address.includes(keyword.value)) {
-          filterList = [...filterList, attraction]
-        } else if (('Class1' in attraction) && attraction.Class1.includes(keyword.value)) {
-          filterList = [...filterList, attraction]
-        }
-      })
-      emitter.emit('emit-searchResult', filterList)
+      if (keyword.value) {
+        router.push({
+          name: 'searchResult',
+          params: {
+            cityId: cityName.value,
+            searchKeyword: keyword.value
+          }
+        })
+      } else {
+        router.push({
+          name: 'city',
+          params: {
+            cityId: cityName.value
+          }
+        })
+      }
     }
 
     return {
