@@ -18,13 +18,15 @@ VueLoading(v-if="isLoading")
 </template>
 
 <script>
-import { inject, ref, onMounted } from 'vue'
+import { ref, watchEffect, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import getData from '@/methods/getData'
 import handleChangePage from '@/methods/handleChangePage'
 import SortBar from '@/components/SortBar.vue'
 import Card from '@/components/cards/AttractionCard.vue'
 import VueLoading from '@/components/VueLoading.vue'
 import Paginate from 'vuejs-paginate-next'
+import { attractionFilter } from '@/methods/keywordFilters'
 
 export default {
   components: {
@@ -38,16 +40,17 @@ export default {
     const pagination = ref({})
     const isLoading = ref(true)
 
-    const { lat, lon } = inject('userLocation')
+    const url = 'v2/Tourism/ScenicSpot?%24select=ScenicSpotName%2CPicture%2CCity%2COpenTime%2CScenicSpotID&%24format=JSON'
 
-    const url = lat
-      ? `v2/Tourism/ScenicSpot?%24select=ScenicSpotName%2CPicture%2CCity%2COpenTime%2CScenicSpotID&%24top=100&%24spatialFilter=nearby(${lat}%2C%20${lon}%2C%2020000)&%24format=JSON`
-      : 'v2/Tourism/ScenicSpot?%24select=ScenicSpotName%2CPicture%2CCity%2COpenTime%2CScenicSpotID&%24top=100&%24format=JSON'
+    const route = useRoute()
+    const keyword = route.params.searchKeyword
 
-    onMounted(async () => {
+    watchEffect(async () => {
       try {
         attractionList.value = await getData(url)
-        pagination.value = handleChangePage(attractionList.value)
+        pagination.value = handleChangePage(
+          attractionFilter(keyword, attractionList.value)
+        )
         isLoading.value = false
       } catch (error) {
         console.log('fetch error', error)
@@ -56,9 +59,18 @@ export default {
       console.log(attractionList.value)
     })
 
-    function changePage (nowPage) {
+    watch(() => route.params.searchKeyword, (newKeyword) => {
+      pagination.value = handleChangePage(
+        attractionFilter(newKeyword, attractionList.value)
+      )
+    })
+
+    function changePage (newPage) {
       window.scrollTo(0, 0)
-      pagination.value = handleChangePage(attractionList.value, nowPage)
+      pagination.value = handleChangePage(
+        attractionFilter(keyword, attractionList.value),
+        newPage
+      )
     }
 
     return {

@@ -14,7 +14,14 @@ const routes = [
       }, {
         path: 'attractions',
         name: 'attractions',
-        component: () => import('../views/AttractionsPageView.vue')
+        component: () => import('../views/AttractionsPageView.vue'),
+        children: [
+          {
+            path: 'search/:searchKeyword',
+            name: 'attractionsSearch',
+            component: () => import('../views/AttractionsPageView.vue')
+          }
+        ]
       }, {
         path: 'attractions/:attractionId',
         name: 'attractionInfo',
@@ -22,7 +29,14 @@ const routes = [
       }, {
         path: 'activities',
         name: 'activities',
-        component: () => import('../views/ActivitiesPageView.vue')
+        component: () => import('../views/ActivitiesPageView.vue'),
+        children: [
+          {
+            path: 'search/:searchKeyword',
+            name: 'activitiesSearch',
+            component: () => import('../views/ActivitiesPageView.vue')
+          }
+        ]
       }, {
         path: 'activities/:activityId',
         name: 'activityInfo',
@@ -30,7 +44,14 @@ const routes = [
       }, {
         path: 'restaurants',
         name: 'restaurants',
-        component: () => import('../views/RestaurantsPageView.vue')
+        component: () => import('../views/RestaurantsPageView.vue'),
+        children: [
+          {
+            path: 'search/:searchKeyword',
+            name: 'restaurantsSearch',
+            component: () => import('../views/RestaurantsPageView.vue')
+          }
+        ]
       }, {
         path: 'restaurants/:restaurantId',
         name: 'restaurantInfo',
@@ -38,7 +59,14 @@ const routes = [
       }, {
         path: 'hotels',
         name: 'hotels',
-        component: () => import('../views/HotelsPageView.vue')
+        component: () => import('../views/HotelsPageView.vue'),
+        children: [
+          {
+            path: 'search/:searchKeyword',
+            name: 'hotelsSearch',
+            component: () => import('../views/HotelsPageView.vue')
+          }
+        ]
       }, {
         path: 'hotels/:hotelId',
         name: 'hotelInfo',
@@ -49,7 +77,7 @@ const routes = [
         component: () => import('../views/city/CityPageView.vue'),
         children: [
           {
-            path: ':searchKeyword',
+            path: 'search/:searchKeyword',
             name: 'searchResult',
             component: () => import('../views/city/CityPageView.vue')
           }

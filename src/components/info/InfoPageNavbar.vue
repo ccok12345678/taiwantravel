@@ -2,7 +2,11 @@
 nav.d-flex.justify-content-between.align-items-center
 
   .d-flex.align-items-center
-    router-link.btn.p-2(:to="backPath" title="回列表")
+    btn.btn.p-2(
+      type="button"
+      title="回上頁"
+      @click="handleClick"
+    )
       img(src="@/assets/icons/arrow_left_icon.svg")
     h3 {{ title }}
 
@@ -23,6 +27,13 @@ export default {
     backPath: {
       type: String,
       default: () => ''
+    }
+  },
+  setup (props) {
+    function handleClick () { history.back() }
+
+    return {
+      handleClick
     }
   }
 }

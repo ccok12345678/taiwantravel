@@ -1,6 +1,11 @@
 <template lang="pug">
 router-link.rounded.overflow-hidden.bg-white.shadow.d-block.position-relative(
-  :to="`/attractions/${attraction.ScenicSpotID}`"
+  :to=`{
+    name: 'attractionInfo',
+    params: {
+      attractionId: attraction.ScenicSpotID
+    }
+  }`
   :title="`察看${attraction.ScenicSpotName}`")
 
   img.position-absolute.link(src="@/assets/icons/link_icon.svg" alt="link icon")
