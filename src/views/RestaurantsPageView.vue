@@ -18,7 +18,9 @@ VueLoading(v-if="isLoading")
 </template>
 
 <script>
-import { inject, ref, onMounted } from 'vue'
+import { ref, watch, watchEffect } from 'vue'
+import { useRoute } from 'vue-router'
+import { restaurantFilter } from '@/methods/keywordFilters'
 import getData from '@/methods/getData'
 import handleChangePage from '@/methods/handleChangePage'
 import SortBar from '@/components/SortBar.vue'
@@ -38,27 +40,37 @@ export default {
     const pagination = ref({})
     const isLoading = ref(true)
 
-    const { lat, lon } = inject('userLocation')
+    const api = 'v2/Tourism/Restaurant?%24format=JSON'
 
-    const url = lat
-      ? `v2/Tourism/Restaurant?%24select=RestaurantID%2CRestaurantName%2CPicture%2COpenTime%2CAddress&%24top=100&%24spatialFilter=nearby(${lat}%2C%20${lon}%2C%207000)&%24format=JSON`
-      : 'v2/Tourism/Restaurant?%24select=RestaurantID%2CRestaurantName%2CPicture%2COpenTime%2CAddress&%24top=100&%24format=JSON'
+    const route = useRoute()
+    const keyword = route.params.searchKeyword
 
-    onMounted(async () => {
+    watchEffect(async () => {
       try {
-        restaurantList.value = await getData(url)
-        pagination.value = handleChangePage(restaurantList.value)
+        restaurantList.value = await getData(api)
+        pagination.value = handleChangePage(
+          restaurantFilter(keyword, restaurantList.value)
+        )
         isLoading.value = false
       } catch (error) {
         console.log('fetch error', error)
         isLoading.value = false
       }
-      console.log(restaurantList.value)
     })
 
-    function changePage (nowPage) {
+    watch(() => route.params.searchKeyword, (newKeyword) => {
+      pagination.value = handleChangePage(
+        restaurantFilter(newKeyword, restaurantList.value),
+        1
+      )
+    })
+
+    function changePage (newPage) {
       window.scrollTo(0, 0)
-      pagination.value = handleChangePage(restaurantList.value, nowPage)
+      pagination.value = handleChangePage(
+        restaurantFilter(keyword, restaurantList.value),
+        newPage
+      )
     }
 
     return {

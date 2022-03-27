@@ -44,7 +44,14 @@ const routes = [
       }, {
         path: 'restaurants',
         name: 'restaurants',
-        component: () => import('../views/RestaurantsPageView.vue')
+        component: () => import('../views/RestaurantsPageView.vue'),
+        children: [
+          {
+            path: 'search/:searchKeyword',
+            name: 'restaurantsSearch',
+            component: () => import('../views/RestaurantsPageView.vue')
+          }
+        ]
       }, {
         path: 'restaurants/:restaurantId',
         name: 'restaurantInfo',
