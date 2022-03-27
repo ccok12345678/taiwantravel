@@ -8,7 +8,7 @@ label(for="keyword")
     input#keyword.form-control.border-0(
       type="search"
       placeholder="搜尋關鍵字"
-      v-model="keyword"
+      v-model.trim="keyword"
       @input.prevent="handleInput"
     )
 
