@@ -1,4 +1,5 @@
 const cities = [
+  { name: '全地區', english: 'all' },
   { name: '臺北市', english: 'Taipei' },
   { name: '新北市', english: 'NewTaipei' },
   { name: '桃園市', english: 'Taoyuan' },

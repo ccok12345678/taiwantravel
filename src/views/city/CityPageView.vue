@@ -48,7 +48,9 @@ export default {
 
     const isLoading = ref(true)
 
-    const api = `v2/Tourism/ScenicSpot/${cityId}?%24format=JSON`
+    const api = `v2/Tourism/ScenicSpot/${
+      (cityId === 'all') ? '' : cityId
+    }?%24format=JSON`
 
     watchEffect(async () => {
       cityName.value = cities.filter(city => city.english === cityId)[0]
@@ -68,7 +70,9 @@ export default {
       isLoading.value = true
       cityName.value = cities.filter(city => city.english === newCity)[0]
       try {
-        const api = `v2/Tourism/ScenicSpot/${newCity}?%24format=JSON`
+        const api = `v2/Tourism/ScenicSpot/${
+          (newCity === 'all') ? '' : newCity
+        }?%24format=JSON`
         attractionList.value = await getData(api)
         pagination.value = handleChangePage(
           filter(route.params.searchKeyword, attractionList.value)
