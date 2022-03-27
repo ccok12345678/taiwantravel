@@ -115,4 +115,41 @@ export function restaurantFilter (keywords, list) {
   return filterList
 }
 
-export function hotelFilter () {}
+export function hotelFilter (keywords, list) {
+  if (!keywords) {
+    return list
+  }
+
+  const keywordList = []
+  keywords.split(' ').forEach(key => {
+    if (key !== '' && !keywordList.includes(key)) {
+      keywordList.push(key)
+    }
+  })
+  const keywordTest = keywordList.map(key => new RegExp(key))
+
+  let filterList = []
+  list.forEach(hotel => {
+    keywordTest.forEach(keyTest => {
+      if (('HotelName' in hotel) &&
+        keyTest.test(hotel.HotelName) &&
+        !filterList.includes(hotel)) {
+        filterList = [...filterList, hotel]
+      } else if (('Address' in hotel) &&
+        keyTest.test(hotel.Address) &&
+        !filterList.includes(hotel)) {
+        filterList = [...filterList, hotel]
+      } else if (('Class' in hotel) &&
+        keyTest.test(hotel.Class) &&
+        !filterList.includes(hotel)) {
+        filterList = [...filterList, hotel]
+      } else if (('Description' in hotel) &&
+        keyTest.test(hotel.Description) &&
+        !filterList.includes(hotel)) {
+        filterList = [...filterList, hotel]
+      }
+    })
+  })
+
+  return filterList
+}

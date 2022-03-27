@@ -18,7 +18,9 @@ VueLoading(v-if="isLoading")
 </template>
 
 <script>
-import { inject, ref, onMounted } from 'vue'
+import { ref, watch, watchEffect } from 'vue'
+import { useRoute } from 'vue-router'
+import { hotelFilter } from '@/methods/keywordFilters'
 import getData from '@/methods/getData'
 import handleChangePage from '@/methods/handleChangePage'
 import SortBar from '@/components/SortBar.vue'
@@ -38,27 +40,35 @@ export default {
     const pagination = ref({})
     const isLoading = ref(true)
 
-    const { lat, lon } = inject('userLocation')
+    const api = 'v2/Tourism/Hotel?format=JSON'
 
-    const url = lat
-      ? `v2/Tourism/Hotel?%24select=HotelID%2CHotelName%2CPicture%2CPhone%2CAddress&%24top=100&%24spatialFilter=nearby(${lat}%2C%20${lon}%2C%2010000)&%24format=JSON`
-      : 'v2/Tourism/Hotel?%24select=HotelID%2CHotelName%2CPicture%2CPhone%2CAddress&%24top=100&%24format=JSON'
+    const route = useRoute()
+    const keyword = route.params.searchKeyword
 
-    onMounted(async () => {
+    watchEffect(async () => {
       try {
-        hotelList.value = await getData(url)
-        pagination.value = handleChangePage(hotelList.value)
+        hotelList.value = await getData(api)
+        pagination.value = handleChangePage(
+          hotelFilter(keyword, hotelList.value)
+        )
         isLoading.value = false
       } catch (error) {
         console.log('fetch error', error)
-        isLoading.value = false
       }
-      console.log(hotelList.value)
     })
 
-    function changePage (nowPage) {
+    watch(() => route.params.searchKeyword, (newKeyword) => {
+      pagination.value = handleChangePage(
+        hotelFilter(newKeyword, hotelList.value)
+      )
+    })
+
+    function changePage (newPage) {
       window.scrollTo(0, 0)
-      pagination.value = handleChangePage(hotelList.value, nowPage)
+      pagination.value = handleChangePage(
+        hotelFilter(keyword, hotelList.value),
+        newPage
+      )
     }
 
     return {

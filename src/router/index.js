@@ -59,7 +59,14 @@ const routes = [
       }, {
         path: 'hotels',
         name: 'hotels',
-        component: () => import('../views/HotelsPageView.vue')
+        component: () => import('../views/HotelsPageView.vue'),
+        children: [
+          {
+            path: 'search/:searchKeyword',
+            name: 'hotelsSearch',
+            component: () => import('../views/HotelsPageView.vue')
+          }
+        ]
       }, {
         path: 'hotels/:hotelId',
         name: 'hotelInfo',
