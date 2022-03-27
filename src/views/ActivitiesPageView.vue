@@ -64,9 +64,12 @@ export default {
       )
     })
 
-    function changePage (nowPage) {
+    function changePage (newPage) {
       window.scrollTo(0, 0)
-      pagination.value = handleChangePage(activityList.value, nowPage)
+      pagination.value = handleChangePage(
+        activityFilter(keyword, activityList.value),
+        newPage
+      )
     }
 
     return {

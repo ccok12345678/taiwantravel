@@ -65,9 +65,12 @@ export default {
       )
     })
 
-    function changePage (nowPage) {
+    function changePage (newPage) {
       window.scrollTo(0, 0)
-      pagination.value = handleChangePage(attractionList.value, nowPage)
+      pagination.value = handleChangePage(
+        attractionFilter(keyword, attractionList.value),
+        newPage
+      )
     }
 
     return {
