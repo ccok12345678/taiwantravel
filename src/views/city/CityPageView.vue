@@ -28,7 +28,7 @@ import VueLoading from '@/components/VueLoading.vue'
 import Paginate from 'vuejs-paginate-next'
 import cities from '@/data/cities'
 import emitter from '@/methods/emitter'
-import filter from '@/methods/keywordFilter'
+import { attractionFilter } from '@/methods/keywordFilters'
 
 export default {
   components: {
@@ -57,9 +57,17 @@ export default {
       try {
         attractionList.value = await getData(api)
         pagination.value = handleChangePage(
-          filter(searchKeyword, attractionList.value)
+          attractionFilter(searchKeyword, attractionList.value)
         )
         isLoading.value = false
+
+        const categoryList = []
+        attractionList.value.forEach(attraction => {
+          if (!categoryList.includes(attraction.Class1)) {
+            categoryList.push(attraction.Class1)
+          }
+        })
+        console.log(categoryList)
       } catch (error) {
         console.log('fetch error', error)
       }
@@ -75,7 +83,7 @@ export default {
         }?%24format=JSON`
         attractionList.value = await getData(api)
         pagination.value = handleChangePage(
-          filter(route.params.searchKeyword, attractionList.value)
+          attractionFilter(route.params.searchKeyword, attractionList.value)
         )
         isLoading.value = false
       } catch (error) {
@@ -88,7 +96,7 @@ export default {
     function changePage (newPage) {
       window.scrollTo(0, 0)
       pagination.value = handleChangePage(
-        filter(route.params.searchKeyword, attractionList.value),
+        attractionFilter(route.params.searchKeyword, attractionList.value),
         newPage
       )
     }
@@ -96,7 +104,7 @@ export default {
     // search
     watch(() => route.params.searchKeyword, (keyword) => {
       pagination.value = handleChangePage(
-        filter(keyword, attractionList.value)
+        attractionFilter(keyword, attractionList.value)
       )
     })
 

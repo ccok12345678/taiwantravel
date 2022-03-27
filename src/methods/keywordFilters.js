@@ -1,4 +1,4 @@
-export default function keywordsFilter (keywords, list) {
+export function attractionFilter (keywords, list) {
   if (!keywords) {
     return list
   }
@@ -32,3 +32,11 @@ export default function keywordsFilter (keywords, list) {
 
   return filterList
 }
+
+export function activityFilter () {
+}
+
+export function restaurantFilter () {
+}
+
+export function hotelFilter () {}
