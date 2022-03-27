@@ -21,7 +21,7 @@ label(for="keyword")
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import emitter from '@/methods/emitter'
 
@@ -40,23 +40,37 @@ export default {
     })
 
     function handleInput () {
-      if (keyword.value) {
-        router.push({
-          name: 'searchResult',
-          params: {
-            cityId: cityName.value,
-            searchKeyword: keyword.value
-          }
-        })
+      if (cityName.value) {
+        if (keyword.value) {
+          router.push({
+            name: 'searchResult',
+            params: {
+              cityId: cityName.value,
+              searchKeyword: keyword.value
+            }
+          })
+        } else {
+          router.push({
+            name: 'city',
+            params: {
+              cityId: cityName.value
+            }
+          })
+        }
       } else {
         router.push({
           name: 'city',
           params: {
-            cityId: cityName.value
+            cityId: 'all',
+            searchKeyword: keyword.value
           }
         })
       }
     }
+
+    watch(() => route.params.cityId, () => {
+      keyword.value = ''
+    })
 
     return {
       keyword,
