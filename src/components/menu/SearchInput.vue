@@ -60,8 +60,9 @@ export default {
         }
       } else {
         if (keyword.value) {
+          console.log(route.name)
           router.push({
-            name: 'attractionSearch',
+            name: `${getRouterName()}Search`,
             params: {
               path: 'search',
               searchKeyword: keyword.value
@@ -69,9 +70,32 @@ export default {
           })
         } else {
           router.push({
-            name: 'attractions'
+            name: getRouterName()
           })
         }
+      }
+    }
+
+    function getRouterName () {
+      switch (route.name) {
+        case 'attractions':
+          return 'attractions'
+        case 'attractionsSearch':
+          return 'attractions'
+        case 'activities':
+          return 'activities'
+        case 'activitiesSearch':
+          return 'activities'
+        case 'restaurants':
+          return 'restaurants'
+        case 'restaurantsSearch':
+          return 'restaurants'
+        case 'hotels':
+          return 'hotels'
+        case 'hotelsSearch':
+          return 'hotels'
+        default:
+          return 'attractions'
       }
     }
 

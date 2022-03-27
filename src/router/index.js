@@ -18,7 +18,7 @@ const routes = [
         children: [
           {
             path: 'search/:searchKeyword',
-            name: 'attractionSearch',
+            name: 'attractionsSearch',
             component: () => import('../views/AttractionsPageView.vue')
           }
         ]
@@ -29,7 +29,14 @@ const routes = [
       }, {
         path: 'activities',
         name: 'activities',
-        component: () => import('../views/ActivitiesPageView.vue')
+        component: () => import('../views/ActivitiesPageView.vue'),
+        children: [
+          {
+            path: 'search/:searchKeyword',
+            name: 'activitiesSearch',
+            component: () => import('../views/ActivitiesPageView.vue')
+          }
+        ]
       }, {
         path: 'activities/:activityId',
         name: 'activityInfo',
