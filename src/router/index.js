@@ -14,7 +14,14 @@ const routes = [
       }, {
         path: 'attractions',
         name: 'attractions',
-        component: () => import('../views/AttractionsPageView.vue')
+        component: () => import('../views/AttractionsPageView.vue'),
+        children: [
+          {
+            path: 'search/:searchKeyword',
+            name: 'attractionSearch',
+            component: () => import('../views/AttractionsPageView.vue')
+          }
+        ]
       }, {
         path: 'attractions/:attractionId',
         name: 'attractionInfo',
@@ -49,7 +56,7 @@ const routes = [
         component: () => import('../views/city/CityPageView.vue'),
         children: [
           {
-            path: ':searchKeyword',
+            path: 'search/:searchKeyword',
             name: 'searchResult',
             component: () => import('../views/city/CityPageView.vue')
           }

@@ -45,6 +45,7 @@ export default {
           router.push({
             name: 'searchResult',
             params: {
+              path: 'search',
               cityId: cityName.value,
               searchKeyword: keyword.value
             }
@@ -58,18 +59,25 @@ export default {
           })
         }
       } else {
-        router.push({
-          name: 'city',
-          params: {
-            cityId: 'all',
-            searchKeyword: keyword.value
-          }
-        })
+        if (keyword.value) {
+          router.push({
+            name: 'attractionSearch',
+            params: {
+              path: 'search',
+              searchKeyword: keyword.value
+            }
+          })
+        } else {
+          router.push({
+            name: 'attractions'
+          })
+        }
       }
     }
 
     watch(() => route.params.cityId, () => {
       keyword.value = ''
+      cityName.value = ''
     })
 
     return {
