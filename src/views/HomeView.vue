@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import { reactive, provide } from 'vue'
-import { round } from 'lodash'
+// import { reactive, provide } from 'vue'
+// import { round } from 'lodash'
 import Banner from '@/components/frontpage/FrontPageBanner.vue'
 import Footer from '@/components/frontpage/FrontPageFooter.vue'
 import NavBar from '@/components/NavBar.vue'
@@ -26,26 +26,26 @@ export default {
     NavBar
   },
   setup () {
-    const userLocation = reactive({ lat: null, lon: null })
+    // const userLocation = reactive({ lat: null, lon: null })
 
-    if ('geolocation' in navigator) {
-      try {
-        navigator.geolocation.getCurrentPosition(async (position) => {
-          userLocation.lat = await round(position.coords.latitude, 9)
-          userLocation.lon = await round(position.coords.longitude, 10)
-        }, () => {
-          userLocation.lat = null
-          userLocation.lon = null
-        })
-      } catch (error) {
-        console.log('location error:', error)
-      }
-    } else {
-      userLocation.lat = null
-      userLocation.lon = null
-    }
+    // if ('geolocation' in navigator) {
+    //   try {
+    //     navigator.geolocation.getCurrentPosition(async (position) => {
+    //       userLocation.lat = await round(position.coords.latitude, 9)
+    //       userLocation.lon = await round(position.coords.longitude, 10)
+    //     }, () => {
+    //       userLocation.lat = null
+    //       userLocation.lon = null
+    //     })
+    //   } catch (error) {
+    //     console.log('location error:', error)
+    //   }
+    // } else {
+    //   userLocation.lat = null
+    //   userLocation.lon = null
+    // }
 
-    provide('userLocation', userLocation)
+    // provide('userLocation', userLocation)
   }
 }
 
