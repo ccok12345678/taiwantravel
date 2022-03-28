@@ -1,5 +1,18 @@
 @import "helper/custommixins";
 
+button.menu-button {
+  background: none;
+  border: 1px solid $primary;
+  font-size: 15px;
+  height: 40px;
+  width: 100%;
+
+  &:hover, &:active {
+    background: $primary;
+    color: white;
+  }
+}
+
 .location {
   @include addIcon('@/assets/icons/location_icon_green.svg')
 }
@@ -52,4 +65,18 @@
   @media (max-width: 567px) {
     height: 160px
   }
+}
+
+.toggle-menu {
+  position: fixed;
+  top: 59px; bottom: 100vh;
+  transition: .3s  linear;
+  z-index: 101;
+
+  @media (max-width: 576.98px) {
+    top: 57px;
+  }
+}
+.toggle-menu.show {
+  bottom: 0;
 }

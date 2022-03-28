@@ -1,7 +1,7 @@
 <template lang="pug">
 .min-vh-100.d-flex.flex-column
 
-  NavBar.fixed-top
+  NavBar.sticky-top
 
   .container-fluid.p-4
     Banner(v-if="$route.name === 'frontpage'")

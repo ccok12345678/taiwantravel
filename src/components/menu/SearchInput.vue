@@ -1,6 +1,6 @@
 <template lang="pug">
 //- search input
-label(for="keyword")
+label.d-block(for="keyword")
   small.d-none 輸入關鍵字
 
   .input-group.border.rounded.bg-light
