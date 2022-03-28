@@ -29,15 +29,13 @@ import getData from '@/methods/getData'
 import handleChangePage from '@/methods/handleChangePage'
 import SortBar from '@/components/SortBar.vue'
 import Card from '@/components/cards/ActivityCard.vue'
-import VueLoading from '@/components/VueLoading.vue'
 import Paginate from 'vuejs-paginate-next'
 
 export default {
   components: {
     SortBar,
     Card,
-    Paginate,
-    VueLoading
+    Paginate
   },
   setup () {
     const activityList = ref([])

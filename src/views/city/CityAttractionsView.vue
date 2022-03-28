@@ -28,7 +28,6 @@ import getData from '@/methods/getData'
 import handleChangePage from '@/methods/handleChangePage'
 import SortBar from '@/components/SortBar.vue'
 import Card from '@/components/cards/AttractionCard.vue'
-import VueLoading from '@/components/VueLoading.vue'
 import Paginate from 'vuejs-paginate-next'
 import cities from '@/data/cities'
 import emitter from '@/methods/emitter'
@@ -38,8 +37,7 @@ export default {
   components: {
     SortBar,
     Card,
-    Paginate,
-    VueLoading
+    Paginate
   },
   setup () {
     const route = useRoute()

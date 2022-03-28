@@ -20,15 +20,13 @@ import Attractions from '@/components/frontpage/FrontPageAttractions.vue'
 import Activities from '@/components/frontpage/FrontPageActivities.vue'
 import Restaurants from '@/components/frontpage/FrontPageRestaurants.vue'
 import Hotels from '@/components/frontpage/FrontPageHotels.vue'
-import VueLoading from '@/components/VueLoading.vue'
 
 export default {
   components: {
     Attractions,
     Activities,
     Restaurants,
-    Hotels,
-    VueLoading
+    Hotels
   },
   setup () {
     const attractions = reactive({ list: [] })
