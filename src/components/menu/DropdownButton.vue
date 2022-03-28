@@ -23,7 +23,10 @@ export default {
 
     const handleClick = () => {
       emit('emit-click', props.city)
-      router.push({ name: 'city', params: { cityId: props.city.english } })
+      router.push({
+        name: 'attractionsOfCity',
+        params: { cityId: props.city.english }
+      })
     }
 
     return {

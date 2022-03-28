@@ -45,8 +45,8 @@ export default {
       }, {
         title: '美食品嚐',
         src: 'https://i.ibb.co/CVbFpJY/Frame-40-5.png',
-        routeName: 'attractionsSearch',
-        keywords: ['小吃/特產類', '夜市', '老街', '市集', '市場']
+        routeName: 'restaurantsSearch',
+        keywords: []
       }, {
         title: '住宿推薦',
         src: 'https://i.ibb.co/Wz6kDCt/Frame-40-6.png',
@@ -56,7 +56,7 @@ export default {
         title: '觀光活動',
         src: 'https://i.ibb.co/ncmxHdQ/Frame-40-7.png',
         routeName: 'activitiesSearch',
-        keywords: ['觀光']
+        keywords: []
       }
     ])
 
