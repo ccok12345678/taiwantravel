@@ -26,8 +26,7 @@ export default {
     const button = reactive(props.button)
 
     function showTheme () {
-      if (route.params.cityId) {
-        console.log(route.params)
+      if (route.params.cityId && route.params.cityId !== 'all') {
         if (button.keywords.length) {
           router.push({
             name: `${button.routeName}OfCity`,
@@ -45,12 +44,18 @@ export default {
           })
         }
       } else {
-        router.push({
-          name: button.routeName,
-          params: {
-            searchKeyword: `${button.keywords.join(' ')}`
-          }
-        })
+        if (button.keywords.length) {
+          router.push({
+            name: button.routeName,
+            params: {
+              searchKeyword: `${button.keywords.join(' ')}`
+            }
+          })
+        } else {
+          router.push({
+            name: `${button.routeName.replace('Search', '')}`
+          })
+        }
       }
     }
 

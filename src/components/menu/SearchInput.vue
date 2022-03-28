@@ -40,19 +40,22 @@ export default {
     })
 
     function handleInput () {
-      if (cityName.value) {
+      const routeName = route.name
+        .replace('Search', '')
+        .replace('OfCity', '')
+
+      if (cityName.value && cityName.value !== 'all') {
         if (keyword.value) {
           router.push({
-            name: `${getRouterName()}SearchOfCity`,
+            name: `${routeName}SearchOfCity`,
             params: {
-              path: 'search',
               cityId: cityName.value,
               searchKeyword: keyword.value
             }
           })
         } else {
           router.push({
-            name: `${getRouterName()}OfCity`,
+            name: `${routeName}OfCity`,
             params: {
               cityId: cityName.value
             }
@@ -60,42 +63,17 @@ export default {
         }
       } else {
         if (keyword.value) {
-          console.log(route.name)
           router.push({
-            name: `${getRouterName()}Search`,
+            name: `${routeName}Search`,
             params: {
-              path: 'search',
               searchKeyword: keyword.value
             }
           })
         } else {
           router.push({
-            name: getRouterName()
+            name: routeName
           })
         }
-      }
-    }
-
-    function getRouterName () {
-      switch (route.name) {
-        case 'attractions':
-          return 'attractions'
-        case 'attractionsSearch':
-          return 'attractions'
-        case 'activities':
-          return 'activities'
-        case 'activitiesSearch':
-          return 'activities'
-        case 'restaurants':
-          return 'restaurants'
-        case 'restaurantsSearch':
-          return 'restaurants'
-        case 'hotels':
-          return 'hotels'
-        case 'hotelsSearch':
-          return 'hotels'
-        default:
-          return 'attractions'
       }
     }
 
