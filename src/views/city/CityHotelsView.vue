@@ -8,6 +8,10 @@ SortBar.mb-3.mb-md-4
     v-for="hotel in pagination.pageData" :key="hotel.HotelID"  )
     Card.w-100(:hotel="hotel")
 
+NoResultMessage.my-2.my-md-4(
+  v-if="('pageData' in pagination) && !pagination.pageData.length"
+)
+
 nav.d-flex.justify-content-center
   Paginate(
     :page-count="pagination.pageTotal"

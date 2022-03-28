@@ -8,6 +8,10 @@ SortBar.mb-3.mb-md-4
     v-for="restaurant in pagination.pageData" :key="restaurant.ScenicSpotID"  )
     Card.w-100(:restaurant="restaurant")
 
+NoResultMessage.my-2.my-md-4(
+  v-if="('pageData' in pagination) && !pagination.pageData.length"
+)
+
 nav.d-flex.justify-content-center
   Paginate(
     :page-count="pagination.pageTotal"
