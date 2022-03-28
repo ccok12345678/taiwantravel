@@ -60,14 +60,6 @@ export default {
           attractionFilter(searchKeyword, attractionList.value)
         )
         isLoading.value = false
-
-        const categoryList = []
-        attractionList.value.forEach(attraction => {
-          if (!categoryList.includes(attraction.Class1)) {
-            categoryList.push(attraction.Class1)
-          }
-        })
-        console.log(categoryList)
       } catch (error) {
         console.log('fetch error', error)
       }
