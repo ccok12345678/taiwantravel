@@ -1,0 +1,108 @@
+<template lang="pug">
+h3.mb-3.mb-md-4 {{ cityName.name }}
+
+SortBar.mb-3.mb-md-4
+
+.row.gy-2.gy-md-4
+  .col-12.col-sm-6.col-md-4(
+    v-for="hotel in pagination.pageData" :key="hotel.HotelID"  )
+    Card.w-100(:hotel="hotel")
+
+nav.d-flex.justify-content-center
+  Paginate(
+    :page-count="pagination.pageTotal"
+    :click-handler="changePage"
+    )
+
+VueLoading(v-if="isLoading")
+</template>
+
+<script>
+import { ref, watchEffect, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import getData from '@/methods/getData'
+import handleChangePage from '@/methods/handleChangePage'
+import SortBar from '@/components/SortBar.vue'
+import Card from '@/components/cards/HotelCard.vue'
+import VueLoading from '@/components/VueLoading.vue'
+import Paginate from 'vuejs-paginate-next'
+import cities from '@/data/cities'
+import emitter from '@/methods/emitter'
+import { hotelFilter } from '@/methods/keywordFilters'
+
+export default {
+  components: {
+    SortBar,
+    Card,
+    Paginate,
+    VueLoading
+  },
+  setup () {
+    const route = useRoute()
+    const { cityId, searchKeyword } = route.params
+
+    const hotelList = ref([])
+    const pagination = ref({})
+
+    const cityName = ref('')
+
+    const isLoading = ref(true)
+
+    const api = `v2/Tourism/Hotel/${cityId}?%24format=JSON`
+
+    watchEffect(async () => {
+      cityName.value = cities.filter(city => city.english === cityId)[0]
+      try {
+        hotelList.value = await getData(api)
+        pagination.value = handleChangePage(
+          hotelFilter(searchKeyword, hotelList.value)
+        )
+        isLoading.value = false
+      } catch (error) {
+        console.log('fetch error', error)
+      }
+      emitter.emit('emit-cityName', cityName.value.english)
+    })
+
+    watch(() => route.params.cityId, async (newCity) => {
+      isLoading.value = true
+      cityName.value = cities.filter(city => city.english === newCity)[0]
+      try {
+        const api = `v2/Tourism/Hotel/${
+          (newCity === 'all') ? '' : newCity
+        }?%24format=JSON`
+        hotelList.value = await getData(api)
+        pagination.value = handleChangePage(
+          hotelFilter(route.params.searchKeyword, hotelList.value)
+        )
+        isLoading.value = false
+      } catch (error) {
+        console.log('fetch error', error)
+      }
+      emitter.emit('emit-cityName', cityName.value.english)
+    })
+
+    function changePage (newPage) {
+      window.scrollTo(0, 0)
+      pagination.value = handleChangePage(
+        hotelFilter(route.params.searchKeyword, hotelList.value),
+        newPage
+      )
+    }
+
+    // search
+    watch(() => route.params.searchKeyword, (keyword) => {
+      pagination.value = handleChangePage(
+        hotelFilter(keyword, hotelList.value)
+      )
+    })
+
+    return {
+      cityName,
+      isLoading,
+      pagination,
+      changePage
+    }
+  }
+}
+</script>
