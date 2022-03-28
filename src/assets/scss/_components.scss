@@ -80,3 +80,9 @@ button.menu-button {
 .toggle-menu.show {
   bottom: 0;
 }
+.message {
+  color: darken($color: $primary, $amount: 10);
+  background-color: rgba($color: $primary, $alpha: .25);
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+}

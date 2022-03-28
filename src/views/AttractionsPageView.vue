@@ -5,14 +5,20 @@ SortBar.mb-3.mb-md-4
 
 .row.gy-2.gy-md-4
   .col-12.col-sm-6.col-md-4(
-    v-for="attraction in pagination.pageData" :key="attraction.ScenicSpotID"  )
+    v-for="attraction in pagination.pageData"
+    :key="attraction.ScenicSpotID"
+  )
     Card.w-100(:attraction="attraction")
+
+NoResultMessage.my-2.my-md-4(
+  v-if="('pageData' in pagination) && !pagination.pageData.length"
+)
 
 nav.d-flex.justify-content-center
   Paginate(
     :page-count="pagination.pageTotal"
     :click-handler="changePage"
-    )
+  )
 
 VueLoading(v-if="isLoading")
 </template>
@@ -24,7 +30,6 @@ import getData from '@/methods/getData'
 import handleChangePage from '@/methods/handleChangePage'
 import SortBar from '@/components/SortBar.vue'
 import Card from '@/components/cards/AttractionCard.vue'
-import VueLoading from '@/components/VueLoading.vue'
 import Paginate from 'vuejs-paginate-next'
 import { attractionFilter } from '@/methods/keywordFilters'
 
@@ -32,8 +37,7 @@ export default {
   components: {
     SortBar,
     Card,
-    Paginate,
-    VueLoading
+    Paginate
   },
   setup () {
     const attractionList = ref([])

@@ -8,6 +8,10 @@ SortBar.mb-3.mb-md-4
     v-for="activity in pagination.pageData" :key="activity.ScenicSpotID"  )
     Card.w-100(:activity="activity")
 
+NoResultMessage.my-2.my-md-4(
+  v-if="('pageData' in pagination) && !pagination.pageData.length"
+)
+
 nav.d-flex.justify-content-center
   Paginate(
     :page-count="pagination.pageTotal"
@@ -25,15 +29,13 @@ import getData from '@/methods/getData'
 import handleChangePage from '@/methods/handleChangePage'
 import SortBar from '@/components/SortBar.vue'
 import Card from '@/components/cards/ActivityCard.vue'
-import VueLoading from '@/components/VueLoading.vue'
 import Paginate from 'vuejs-paginate-next'
 
 export default {
   components: {
     SortBar,
     Card,
-    Paginate,
-    VueLoading
+    Paginate
   },
   setup () {
     const activityList = ref([])
