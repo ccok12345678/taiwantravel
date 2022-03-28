@@ -17,3 +17,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.velmld-overlay[data-v-2964abc9] {
+  z-index: 100;
+}
+</style>

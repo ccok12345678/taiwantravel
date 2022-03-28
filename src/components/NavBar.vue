@@ -1,20 +1,47 @@
 <template lang="pug">
-nav.bg-white.d-flex.justify-content-center.py-2.ps-3.shadow.d-lg-none
+nav.bg-white
+  .d-flex.justify-content-center.py-2.ps-3.shadow.d-lg-none.border-bottom
 
-  button.btn.btn-third.border-0.shadow-0.my-auto.me-auto(
-    type="button" title="開啟選單")
-    img(src="@/assets/icons/slider_icon.svg"
-      alt="menu toggle button")
+    button.btn.btn-third.border-0.shadow-0.my-auto.me-auto(
+      type="button"
+      title="開啟選單"
+      ref="button"
+      @click="toggleMenu"
+    )
+      img(
+        src="@/assets/icons/slider_icon.svg"
+        alt="menu toggle button"
+      )
 
-  Logo.logo.me-auto
+    Logo.logo.me-auto
+
+  OffcanvasMenu(
+    :isShow="isShow"
+    @emit-toggle="toggleMenu"
+  )
 </template>
 
 <script>
+import { ref } from 'vue'
 import Logo from '@/components/PageLogo.vue'
+import OffcanvasMenu from '@/components/menu/OffcanvasMenu.vue'
 
 export default {
   components: {
-    Logo
+    Logo,
+    OffcanvasMenu
+  },
+  setup () {
+    const isShow = ref(false)
+
+    function toggleMenu () {
+      isShow.value = !isShow.value
+    }
+
+    return {
+      isShow,
+      toggleMenu
+    }
   }
 }
 </script>

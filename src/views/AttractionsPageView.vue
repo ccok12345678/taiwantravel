@@ -40,7 +40,7 @@ export default {
     const pagination = ref({})
     const isLoading = ref(true)
 
-    const url = 'v2/Tourism/ScenicSpot?%24select=ScenicSpotName%2CPicture%2CCity%2COpenTime%2CScenicSpotID&%24format=JSON'
+    const url = 'v2/Tourism/ScenicSpot?%24select=ScenicSpotName%2CPicture%2CClass1%2CCity%2COpenTime%2CScenicSpotID&%24format=JSON'
 
     const route = useRoute()
     const keyword = route.params.searchKeyword
@@ -56,7 +56,6 @@ export default {
         console.log('fetch error', error)
         isLoading.value = false
       }
-      console.log(attractionList.value)
     })
 
     watch(() => route.params.searchKeyword, (newKeyword) => {

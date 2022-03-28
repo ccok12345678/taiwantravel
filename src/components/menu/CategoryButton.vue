@@ -1,17 +1,41 @@
 <template lang="pug">
 button.btn.d-flex.flex-column.align-items-center(
-  type="button" :title="button.title")
+  type="button"
+  :title="button.title"
+  @click="showTheme"
+)
   img(:src="button.src" width="65" :alt="`分類為${button.title}`")
   span {{ button.title }}
 
 </template>
 
 <script>
+import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
+
 export default {
   props: {
     button: {
       type: Object,
       default: () => ({ title: '探索台灣', src: 'https://i.ibb.co/125cfL1/illustration-sm.png' })
+    }
+  },
+  setup (props) {
+    const router = useRouter()
+    const button = reactive(props.button)
+
+    function showTheme () {
+      console.log(props.button)
+      router.push({
+        name: button.routeName,
+        params: {
+          searchKeyword: `${button.keywords.join(' ')} ${button.title}`
+        }
+      })
+    }
+
+    return {
+      showTheme
     }
   }
 }

@@ -55,7 +55,6 @@ export default {
       } catch (error) {
         console.log('fetch error', error)
       }
-      console.log(activityList.value)
     })
 
     watch(() => route.params.searchKeyword, (newKeyword) => {
