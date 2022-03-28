@@ -93,6 +93,17 @@ const routes = [
             component: () => import('../views/city/CityActivitiesView.vue')
           }
         ]
+      }, {
+        path: 'city/:cityId/restaurants',
+        name: 'restaurantsOfCity',
+        component: () => import('../views/city/CityRestaurantsView.vue'),
+        children: [
+          {
+            path: 'search/:searchKeyword',
+            name: 'restaurantsSearchOfCity',
+            component: () => import('../views/city/CityRestaurantsView.vue')
+          }
+        ]
       }
     ]
   }
