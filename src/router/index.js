@@ -23,6 +23,17 @@ const routes = [
           }
         ]
       }, {
+        path: 'attractions',
+        name: 'attractions',
+        component: () => import('../views/AttractionsPageView.vue'),
+        children: [
+          {
+            path: 'search/:searchKeyword',
+            name: 'frontpageSearch',
+            component: () => import('../views/AttractionsPageView.vue')
+          }
+        ]
+      }, {
         path: 'attractions/:attractionId',
         name: 'attractionInfo',
         component: () => import('../views/info/AttractionInfoView.vue')
