@@ -43,7 +43,7 @@ export default {
       if (cityName.value) {
         if (keyword.value) {
           router.push({
-            name: 'searchResult',
+            name: `${getRouterName()}SearchOfCity`,
             params: {
               path: 'search',
               cityId: cityName.value,
@@ -52,7 +52,7 @@ export default {
           })
         } else {
           router.push({
-            name: 'city',
+            name: `${getRouterName()}OfCity`,
             params: {
               cityId: cityName.value
             }

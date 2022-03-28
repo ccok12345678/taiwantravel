@@ -56,7 +56,7 @@ export default {
         title: '觀光活動',
         src: 'https://i.ibb.co/ncmxHdQ/Frame-40-7.png',
         routeName: 'activitiesSearch',
-        keywords: ['觀光']
+        keywords: []
       }
     ])
 

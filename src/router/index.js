@@ -72,14 +72,25 @@ const routes = [
         name: 'hotelInfo',
         component: () => import('../views/info/HotelInfoView.vue')
       }, {
-        path: 'city/:cityId',
-        name: 'city',
-        component: () => import('../views/city/CityPageView.vue'),
+        path: 'city/:cityId/attractions',
+        name: 'attractionsOfCity',
+        component: () => import('../views/city/CityAttractionsView.vue'),
         children: [
           {
             path: 'search/:searchKeyword',
-            name: 'searchResult',
-            component: () => import('../views/city/CityPageView.vue')
+            name: 'attractionsSearchOfCity',
+            component: () => import('../views/city/CityAttractionsView.vue')
+          }
+        ]
+      }, {
+        path: 'city/:cityId/activities',
+        name: 'activitiesOfCity',
+        component: () => import('../views/city/CityActivitiesView.vue'),
+        children: [
+          {
+            path: 'search/:searchKeyword',
+            name: 'activitiesSearchOfCity',
+            component: () => import('../views/city/CityActivitiesView.vue')
           }
         ]
       }

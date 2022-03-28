@@ -11,7 +11,7 @@ button.btn.d-flex.flex-column.align-items-center(
 
 <script>
 import { reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 export default {
   props: {
@@ -22,16 +22,36 @@ export default {
   },
   setup (props) {
     const router = useRouter()
+    const route = useRoute()
     const button = reactive(props.button)
 
     function showTheme () {
-      console.log(props.button)
-      router.push({
-        name: button.routeName,
-        params: {
-          searchKeyword: `${button.keywords.join(' ')} ${button.title}`
+      if (route.params.cityId) {
+        console.log(route.params)
+        if (button.keywords.length) {
+          router.push({
+            name: `${button.routeName}OfCity`,
+            params: {
+              cityId: route.params.cityId,
+              searchKeyword: `${button.keywords.join(' ')}`
+            }
+          })
+        } else {
+          router.push({
+            name: `${button.routeName.replace('Search', '')}OfCity`,
+            params: {
+              cityId: route.params.cityId
+            }
+          })
         }
-      })
+      } else {
+        router.push({
+          name: button.routeName,
+          params: {
+            searchKeyword: `${button.keywords.join(' ')}`
+          }
+        })
+      }
     }
 
     return {
