@@ -1,5 +1,5 @@
 <template lang="pug">
-h3.mb-3.mb-md-4 {{ cityName.name }}
+h3.mb-3.mb-md-4 {{ cityName.name }}：美食品嚐
 
 SortBar.mb-3.mb-md-4
 
