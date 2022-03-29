@@ -14,23 +14,23 @@ const routes = [
       }, {
         path: 'attractions',
         name: 'attractions',
-        component: () => import('../views/AttractionsPageView.vue'),
+        component: () => import('../views/category/AttractionsPageView.vue'),
         children: [
           {
             path: 'search/:searchKeyword',
             name: 'attractionsSearch',
-            component: () => import('../views/AttractionsPageView.vue')
+            component: () => import('../views/category/AttractionsPageView.vue')
           }
         ]
       }, {
         path: 'attractions',
         name: 'attractions',
-        component: () => import('../views/AttractionsPageView.vue'),
+        component: () => import('../views/category/AttractionsPageView.vue'),
         children: [
           {
             path: 'search/:searchKeyword',
             name: 'frontpageSearch',
-            component: () => import('../views/AttractionsPageView.vue')
+            component: () => import('../views/category/AttractionsPageView.vue')
           }
         ]
       }, {
@@ -40,12 +40,12 @@ const routes = [
       }, {
         path: 'activities',
         name: 'activities',
-        component: () => import('../views/ActivitiesPageView.vue'),
+        component: () => import('../views/category/ActivitiesPageView.vue'),
         children: [
           {
             path: 'search/:searchKeyword',
             name: 'activitiesSearch',
-            component: () => import('../views/ActivitiesPageView.vue')
+            component: () => import('../views/category/ActivitiesPageView.vue')
           }
         ]
       }, {
@@ -55,12 +55,12 @@ const routes = [
       }, {
         path: 'restaurants',
         name: 'restaurants',
-        component: () => import('../views/RestaurantsPageView.vue'),
+        component: () => import('../views/category/RestaurantsPageView.vue'),
         children: [
           {
             path: 'search/:searchKeyword',
             name: 'restaurantsSearch',
-            component: () => import('../views/RestaurantsPageView.vue')
+            component: () => import('../views/category/RestaurantsPageView.vue')
           }
         ]
       }, {
@@ -70,12 +70,12 @@ const routes = [
       }, {
         path: 'hotels',
         name: 'hotels',
-        component: () => import('../views/HotelsPageView.vue'),
+        component: () => import('../views/category/HotelsPageView.vue'),
         children: [
           {
             path: 'search/:searchKeyword',
             name: 'hotelsSearch',
-            component: () => import('../views/HotelsPageView.vue')
+            component: () => import('../views/category/HotelsPageView.vue')
           }
         ]
       }, {
