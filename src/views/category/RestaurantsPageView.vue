@@ -25,6 +25,7 @@ VueLoading(v-if="isLoading")
 import { ref, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { restaurantFilter } from '@/methods/keywordFilters'
+import { useMeta } from 'vue-meta'
 import getData from '@/methods/getData'
 import handleChangePage from '@/methods/handleChangePage'
 import SortBar from '@/components/SortBar.vue'
@@ -74,6 +75,10 @@ export default {
         newPage
       )
     }
+
+    useMeta({
+      title: '美食品嚐'
+    })
 
     return {
       isLoading,

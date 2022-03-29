@@ -32,6 +32,7 @@ import Paginate from 'vuejs-paginate-next'
 import cities from '@/data/cities'
 import emitter from '@/methods/emitter'
 import { hotelFilter } from '@/methods/keywordFilters'
+import { useMeta } from 'vue-meta'
 
 export default {
   components: {
@@ -97,6 +98,10 @@ export default {
       pagination.value = handleChangePage(
         hotelFilter(keyword, hotelList.value)
       )
+    })
+
+    useMeta({
+      title: '地區住宿'
     })
 
     return {

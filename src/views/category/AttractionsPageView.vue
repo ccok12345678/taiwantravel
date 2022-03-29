@@ -26,6 +26,7 @@ VueLoading(v-if="isLoading")
 <script>
 import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { useMeta } from 'vue-meta'
 import getData from '@/methods/getData'
 import handleChangePage from '@/methods/handleChangePage'
 import SortBar from '@/components/SortBar.vue'
@@ -75,6 +76,10 @@ export default {
         newPage
       )
     }
+
+    useMeta({
+      title: '熱門景點'
+    })
 
     return {
       isLoading,

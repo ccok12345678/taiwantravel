@@ -32,6 +32,7 @@ import Paginate from 'vuejs-paginate-next'
 import cities from '@/data/cities'
 import emitter from '@/methods/emitter'
 import { activityFilter } from '@/methods/keywordFilters'
+import { useMeta } from 'vue-meta'
 
 export default {
   components: {
@@ -98,6 +99,10 @@ export default {
       pagination.value = handleChangePage(
         activityFilter(keyword, activityList.value)
       )
+    })
+
+    useMeta({
+      title: '地區觀光活動'
     })
 
     return {

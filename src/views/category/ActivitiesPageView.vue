@@ -25,6 +25,7 @@ VueLoading(v-if="isLoading")
 import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { activityFilter } from '@/methods/keywordFilters'
+import { useMeta } from 'vue-meta'
 import getData from '@/methods/getData'
 import handleChangePage from '@/methods/handleChangePage'
 import SortBar from '@/components/SortBar.vue'
@@ -72,6 +73,10 @@ export default {
         newPage
       )
     }
+
+    useMeta({
+      title: '觀光活動'
+    })
 
     return {
       isLoading,
