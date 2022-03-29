@@ -32,6 +32,9 @@ export default {
         return chunk
           ? `${chunk} | 台灣旅遊景點導覽 THE F2E`
           : '台灣旅遊景點導覽 THE F2E'
+      },
+      htmlAttrs: {
+        lang: 'zh-Hant-TW'
       }
     })
   }
