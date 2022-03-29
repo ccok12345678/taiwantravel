@@ -24,7 +24,7 @@ VueLoading(v-if="isLoading")
 </template>
 
 <script>
-import { ref, watchEffect, watch } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import getData from '@/methods/getData'
 import handleChangePage from '@/methods/handleChangePage'
@@ -49,7 +49,7 @@ export default {
     const route = useRoute()
     const keyword = route.params.searchKeyword
 
-    watchEffect(async () => {
+    onMounted(async () => {
       try {
         attractionList.value = await getData(url)
         pagination.value = handleChangePage(

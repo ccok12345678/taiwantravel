@@ -22,7 +22,7 @@ VueLoading(v-if="isLoading")
 </template>
 
 <script>
-import { ref, watch, watchEffect } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { hotelFilter } from '@/methods/keywordFilters'
 import getData from '@/methods/getData'
@@ -47,7 +47,7 @@ export default {
     const route = useRoute()
     const keyword = route.params.searchKeyword
 
-    watchEffect(async () => {
+    onMounted(async () => {
       try {
         hotelList.value = await getData(api)
         pagination.value = handleChangePage(

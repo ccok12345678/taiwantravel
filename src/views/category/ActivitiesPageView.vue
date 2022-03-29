@@ -22,7 +22,7 @@ VueLoading(v-if="isLoading")
 </template>
 
 <script>
-import { ref, watchEffect, watch } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { activityFilter } from '@/methods/keywordFilters'
 import getData from '@/methods/getData'
@@ -47,7 +47,7 @@ export default {
     const route = useRoute()
     const keyword = route.params.searchKeyword
 
-    watchEffect(async () => {
+    onMounted(async () => {
       try {
         activityList.value = await getData(api)
         pagination.value = handleChangePage(

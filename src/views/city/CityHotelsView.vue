@@ -22,7 +22,7 @@ VueLoading(v-if="isLoading")
 </template>
 
 <script>
-import { ref, watchEffect, watch } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import getData from '@/methods/getData'
 import handleChangePage from '@/methods/handleChangePage'
@@ -52,7 +52,7 @@ export default {
 
     const api = `v2/Tourism/Hotel/${cityId}?%24format=JSON`
 
-    watchEffect(async () => {
+    onMounted(async () => {
       cityName.value = cities.filter(city => city.english === cityId)[0]
       try {
         hotelList.value = await getData(api)

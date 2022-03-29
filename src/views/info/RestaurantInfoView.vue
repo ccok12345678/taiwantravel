@@ -32,7 +32,7 @@ VueLoading(v-if="isLoading")
 </template>
 
 <script>
-import { ref, watchEffect, watch } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import getData from '@/methods/getData'
 import InfoPageNavbar from '@/components/info/InfoPageNavbar.vue'
@@ -64,7 +64,7 @@ export default {
 
     const api = 'v2/Tourism/Restaurant?%24format=JSON'
 
-    watchEffect(async () => {
+    onMounted(async () => {
       try {
         const restaurantList = await getData(api)
         tempRestaurant.value = restaurantList
