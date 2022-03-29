@@ -20,14 +20,7 @@ const routes = [
             path: 'search/:searchKeyword',
             name: 'attractionsSearch',
             component: () => import('../views/category/AttractionsPageView.vue')
-          }
-        ]
-      }, {
-        path: 'attractions',
-        name: 'attractions',
-        component: () => import('../views/category/AttractionsPageView.vue'),
-        children: [
-          {
+          }, {
             path: 'search/:searchKeyword',
             name: 'frontpageSearch',
             component: () => import('../views/category/AttractionsPageView.vue')

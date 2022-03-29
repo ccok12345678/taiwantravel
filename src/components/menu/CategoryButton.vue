@@ -47,6 +47,7 @@ export default {
         if (button.keywords.length) {
           router.push({
             name: button.routeName,
+            path: 'search',
             params: {
               searchKeyword: `${button.keywords.join(' ')}`
             }
