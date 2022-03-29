@@ -26,7 +26,7 @@
     aria-labelledby="dropdownMenuLink")
     .row.g-2
 
-      .col-4(v-for="city in cities" :key="city.english")
+      .col-xl-4.col-6(v-for="city in cities" :key="city.english")
         DropdownButton(:city="city"
           @emit-click="handleClick")
 </template>
