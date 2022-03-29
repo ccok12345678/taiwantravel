@@ -69,7 +69,6 @@ export default {
         const restaurantList = await getData(api)
         tempRestaurant.value = restaurantList
           .filter(restaurant => restaurant.RestaurantID === restaurantId)[0]
-        console.log(tempRestaurant.value)
 
         const { PositionLon, PositionLat } = tempRestaurant.value.Position
         const nearbyApi = `v2/Tourism/Restaurant?%24select=RestaurantID%2CRestaurantName%2CPicture%2COpenTime%2CAddress&%24top=10&%24spatialFilter=nearby(${PositionLat}%2C%20${PositionLon}%2C%207000)&%24format=JSON`
