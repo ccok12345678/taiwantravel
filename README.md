@@ -1,4 +1,7 @@
 # 台灣旅遊景點導覽網站
+
+連結：[台灣旅遊景點導覽](https://ccok12345678.github.io/taiwantravel/#/)
+
 ## 說明
 [THE F2E 3rd 前端修練精神時光屋](https://2021.thef2e.com/)「Week 1 - 台灣旅遊景點導覽」實作練習。
 
