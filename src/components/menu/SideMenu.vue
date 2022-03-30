@@ -4,7 +4,7 @@ aside.bg-white.vh-100.shadow.sticky-top.p-4.pt-1.overflow-auto
   header.side-header.mt-3
     Logo.mb-3
 
-    SearchDropdown.mb-4
+    AreaDropdown.mb-4
 
     SearchInput
 
@@ -18,14 +18,14 @@ aside.bg-white.vh-100.shadow.sticky-top.p-4.pt-1.overflow-auto
 <script>
 import Logo from '@/components/PageLogo.vue'
 import CategoryMenu from '@/components/menu/CategoryMenu.vue'
-import SearchDropdown from '@/components/menu/SearchDropdown.vue'
+import AreaDropdown from '@/components/menu/AreasDropdown.vue'
 import SearchInput from '@/components/menu/SearchInput.vue'
 
 export default {
   components: {
     Logo,
     CategoryMenu,
-    SearchDropdown,
+    AreaDropdown,
     SearchInput
   }
 }

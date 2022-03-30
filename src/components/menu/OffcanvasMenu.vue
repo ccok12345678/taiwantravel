@@ -4,7 +4,7 @@
 )
   header.side-header.mt-2.text-center
 
-    SearchDropdown.mb-2.pb-1
+    AreaDropdown.mb-2.pb-1
 
     SearchInput
 
@@ -26,13 +26,13 @@
 
 <script>
 import CategoryMenu from '@/components/menu/CategoryMenu.vue'
-import SearchDropdown from '@/components/menu/SearchDropdown.vue'
+import AreaDropdown from '@/components/menu/AreasDropdown.vue'
 import SearchInput from '@/components/menu/SearchInput.vue'
 
 export default {
   components: {
     CategoryMenu,
-    SearchDropdown,
+    AreaDropdown,
     SearchInput
   },
   props: {
