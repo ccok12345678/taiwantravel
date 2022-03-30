@@ -7,7 +7,7 @@ button.menu-button {
   height: 40px;
   width: 100%;
 
-  &:hover, &:active {
+  &:hover:not([disabled]), &:active:not([disabled]) {
     background: $primary;
     color: white;
   }
