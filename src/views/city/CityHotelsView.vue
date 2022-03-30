@@ -82,7 +82,7 @@ export default {
       } catch (error) {
         console.log('fetch error', error)
       }
-      emitter.emit('emit-cityName', cityName.value.english)
+      emitter.emit('emit-cityName', newCity)
     })
 
     function changePage (newPage) {
