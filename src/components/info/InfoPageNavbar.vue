@@ -2,7 +2,7 @@
 nav.d-flex.justify-content-between.align-items-center
 
   .d-flex.align-items-center
-    btn.btn.p-2(
+    button.btn.p-2(
       type="button"
       title="回上頁"
       @click="goBack"
