@@ -1,5 +1,5 @@
 <template lang="pug">
-.d-flex
+.d-none.d-sm-flex
   .p-1
     img(src="@/assets/icons/baseline_sort_icon.svg" alt="sort button")
 
